@@ -1,0 +1,4 @@
+[
+  {"id": 1, "title": "Developer", "hourly_rate": 25.00, "tax_rate": 1.06},
+  {"id": 2, "title": "Manager", "hourly_rate": 40.00, "tax_rate": 1.06}
+]

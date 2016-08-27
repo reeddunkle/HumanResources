@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+  {% block page_head %}
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  {% endblock %}
+
+  <body>
+    {% block body %}
+    <div id="root"></div>
+    <!-- {% csrf_token %} -->
+    {% endblock %}
+
+    {% render_bundle 'main' %}
+  </body>
+
+
+</html>
