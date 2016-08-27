@@ -1,12 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom'
+
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { Router, Route, IndexRoute } from 'react-router'
 import thunk from 'redux-thunk'
+
 import jobsApp from './reducers'
 import App from './components/App'
 import InvoiceList from './components/InvoiceList';
+import JobList from './components/JobList';
+import TimeList from './components/TimeList';
 
 let store = createStore(jobsApp, applyMiddleware(thunk));
 
@@ -23,7 +27,13 @@ const loadTime = () => (
 )
 
 render(
-  <App />,
+  <Provider store={store}>
+    <ReduxRouter>
+      <Route component={App}>
+        <Route path='/' component={JobList} onEnter={loadJobs} />
+      </Route>
+    </ReduxRouter>
+  </Provider>
   document.getElementById('root')
 )
 
