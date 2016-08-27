@@ -25,13 +25,6 @@ function receiveData(json) {
   }
 };
 
-function receiveError(json) {
-  return {
-    type: types.RECV_ERROR,
-    data: json
-  }
-};
-
 export const fetchData = (url) => {
   return (dispatch) => {
     dispatch(requestData());
