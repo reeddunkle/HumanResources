@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import JobList from './JobList'
 import JobForm from './JobForm'
+import {fetchData} from '../actions/actions';
 
 class JobBox extends React.Component {
   constructor(props) {
@@ -11,13 +12,7 @@ class JobBox extends React.Component {
     this.handleJobSubmit = this.handleJobSubmit.bind(this)
   }
   loadJobsFromServer() {
-    axios.get(this.props.url).then((response) => {
-      return response.json();
-    }).then((data) => {
-      this.setState({data: data});
-    }).catch((error) => {
-      console.log("Error occured.");
-    });
+    this.setState({data: fetchData(this.props.url)});
     // fetch(this.props.url).then((response) => {
     //   return response.json();
     // })

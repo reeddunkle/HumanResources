@@ -11,4 +11,4 @@ const serverState = (state = 'pristine', action) => {
   }
 }
 
-export default serverState;
+export default serverState

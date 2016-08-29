@@ -1,26 +1,25 @@
 import axios from 'axios'
-import * as types from './actionTypes'
 
-function postState(todos) {
-  return axios.post("/save", todos);
+function postState(jobs) {
+  return axios.post("/api/jobs", jobs);
 }
 
 let nextJobId = 0
 export const addJob = (text) => {
   return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
+    type: 'ADD_JOB',
+    id: nextJobId++,
     text
   }
 }
 
 function requestData() {
-  return {type: types.REQ_DATA}
+  return {type: 'REQ_DATA'}
 };
 
 function receiveData(json) {
   return{
-    type: types.RECV_DATA,
+    type: 'RECV_DATA',
     data: json
   }
 };
@@ -61,9 +60,9 @@ export const setVisibilityFilter = (filter) => {
   }
 }
 
-export const toggleTodo = (id) => {
+export const toggleJob = (id) => {
   return {
-    type: 'TOGGLE_TODO',
+    type: 'TOGGLE_JOB',
     id
   }
 }
@@ -89,7 +88,7 @@ function stateSaveStart() {
 export const saveState = () => {
   return (dispatch, getState) => {
     dispatch(stateSaveStart());
-    return postState(getState().todos)
+    return postState(getState().jobs)
       .then(
         ok => dispatch(stateSaved())
       )

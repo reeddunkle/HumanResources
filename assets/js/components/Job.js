@@ -1,12 +1,21 @@
 import React from 'react'
 
-const Job = ({ title, children }) => (
-  <div className="job">
-    <h3 className="jobTitle">
-      {title}
-    </h3>
-    {children}
-  </div>
-)
+class Job extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  render() {
+    const {job} = this.props;
+
+    return (
+      <tr>
+        <td>{job.title}</td>
+        <td>{job.hourly_rate}</td>
+        <td>{job.tax_rate}</td>
+      </tr>
+    )
+  }
+};
 
 export default Job

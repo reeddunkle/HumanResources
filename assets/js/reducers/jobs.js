@@ -1,12 +1,12 @@
-const todo = (state, action) => {
+const job = (state, action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'ADD_JOB':
       return {
         id: action.id,
         text: action.text,
         completed: false
       }
-    case 'TOGGLE_TODO':
+    case 'TOGGLE_JOB':
       if (state.id !== action.id) {
         return state
       }
@@ -20,20 +20,20 @@ const todo = (state, action) => {
   }
 }
 
-const todos = (state = [], action) => {
+const jobs = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'ADD_JOB':
       return [
         ...state,
-        todo(undefined, action)
+        job(undefined, action)
       ]
-    case 'TOGGLE_TODO':
+    case 'TOGGLE_JOB':
       return state.map(t =>
-        todo(t, action)
+        job(t, action)
       )
     default:
       return state
   }
 }
 
-export default todos
+export default jobs
