@@ -4,6 +4,7 @@ import configureStore from './store'
 import Root from './components/Root'
 
 let store = configureStore();
+console.log(store);
 
 render(
   <Root store={store} />,

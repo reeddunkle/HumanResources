@@ -6,6 +6,7 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log("In home");
     return (
       <div className='container'>
         <h2>Welcome to Human Resources!</h2>

@@ -2,17 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux';
 import Job from './Job'
 
-// @connect(state => ({data: state.app.data}))
 class JobList extends React.Component{
   constructor(props){
     super(props);
   }
 
   render() {
-    const {data} = this.props;
+    const {jobs} = this.props;
     return (
       <div className='container'>
-        <table className='table table-bordered table-striped'>
+        <table>
           <thead>
             <tr>
               <th>Job Title</th>
@@ -21,9 +20,9 @@ class JobList extends React.Component{
             </tr>
           </thead>
           <tbody>
-          {data.map(job => {
+          {jobs.map(job => {
             return (
-              <Job key={job.title} job={job} />
+              <Job key={job.id} job={job} />
             )
           })}
           </tbody>
@@ -33,5 +32,13 @@ class JobList extends React.Component{
   }
 };
 
-// export default JobList
-export default connect(state => ({data: state.app.data}))(JobList)
+const mapStateToProps = ({ jobs }) => {
+  var jobsArray = Object.keys(jobs).map(key => {
+    return jobs[key];
+  })
+  console.log(jobs);
+  return {jobs: jobsArray || []};
+}
+
+
+export default connect(mapStateToProps)(JobList)

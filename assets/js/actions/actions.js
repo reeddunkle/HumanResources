@@ -4,29 +4,50 @@ function postState(jobs) {
   return axios.post("/api/jobs", jobs);
 }
 
-let nextJobId = 0
-export const addJob = (text) => {
-  return {
-    type: 'ADD_JOB',
-    id: nextJobId++,
-    text
+export const addJob = (title, hourly, tax) => {
+  return (dispatch) => {
+    dispatch(requestData("addJob"));
+    return axios({
+      url: "/api/jobs",
+      timeout: 20000,
+      method: 'post',
+      responseType: 'json'
+    },
+    {id: title, hourly_rate: hourly, tax_rate: tax})
+      .then((response) => {
+        dispatch(receiveData(response.data, "addJob"));
+      })
+      .catch((response) => {
+        dispatch(receiveError(response.data, "addJob"));
+      })
   }
-}
-
-function requestData() {
-  return {type: 'REQ_DATA'}
 };
 
-function receiveData(json) {
+function requestData(subject) {
+  return {type: 'REQ_DATA', subject: subject}
+};
+
+function receiveError(json, subject) {
+  return{
+    type: 'RECV_ERR',
+    data: json,
+    subject: subject
+  }
+};
+
+function receiveData(json, subject) {
   return{
     type: 'RECV_DATA',
-    data: json
+    data: json,
+    subject: subject
   }
 };
 
 export const fetchData = (url) => {
+  console.log(2, "AC Called:");
   return (dispatch) => {
-    dispatch(requestData());
+    console.log(3, "Dispatching Data Request");
+    dispatch(requestData("fetchData"));
     return axios({
       url: url,
       timeout: 20000,
@@ -34,10 +55,12 @@ export const fetchData = (url) => {
       responseType: 'json'
     })
       .then((response) => {
-        dispatch(receiveData(response.data));
+        console.log("4a", "Data Found:", response.data);
+        dispatch(receiveData(response.data, "fetchData"));
       })
       .catch((response) => {
-        dispatch(receiveError(response.data));
+        console.log("4b", "Data Error:", response.data);
+        dispatch(receiveError(response.data, "fetchData"));
       })
   }
 };

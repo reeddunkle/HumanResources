@@ -30,18 +30,14 @@ class JobForm extends React.Component {
     if (!title || !hourlyRate || !taxRate) {
       return;
     }
-    this.props.onCommentSubmit({
-      title: title,
-      hourlyRate: hourlyRate,
-      taxRate: taxRate
-    })
+    this.props.addJob(title, hourlyRate, taxRate);
     this.setState({title: '', hourlyRate: '', taxRate: ''})
   }
   render() {
     return (
       <form className="jobForm" onSubmit={this.handleSubmit}>
         <input
-          type="hourlyRate"
+          type="text"
           placeholder="Job title"
           value={this.state.title}
           onChange={this.handleTitleChange}

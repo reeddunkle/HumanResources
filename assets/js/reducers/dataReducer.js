@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
-import { routerStateReducer } from 'redux-react-router'
 
-const appReducer = (
+const dataReducer = (
   state = {
     isLoading: false,
     data: [],
@@ -19,9 +18,4 @@ const appReducer = (
   }
 }
 
-const rootReducer = combineReducers({
-  router: routerStateReducer,
-  app: appReducer
-});
-
-export default rootReducer;
+export default dataReducer;

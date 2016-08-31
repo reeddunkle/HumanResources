@@ -1,17 +1,13 @@
-import {compose, createStore, applyMiddleware } from 'redux';
-import { routerStateReducer, reduxReactRouter } from 'redux-react-router';
+import { compose, createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk'
+import jobsReducer from '../reducers/jobsReducer';
 
-import rootReducer from '../reducers';
-import createHistory from 'history/lib/createBrowserHistory';
-
-const createAppStore = compose(
-  applyMiddleware(thunk),
-  reduxReactRouter({createHistory})
-)(createStore);
+var reducers = combineReducers({
+  jobs: jobsReducer
+})
 
 const configureStore = (initialState) => {
-  const store = createAppStore(rootReducer, initialState);
+  const store = createStore(reducers, applyMiddleware(thunk));
   return store;
 };
 

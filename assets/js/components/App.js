@@ -1,19 +1,19 @@
 import React, { PropTypes } from 'react'
 import Router, { Link } from 'react-router';
 import { connect } from 'react-redux';
+import Home from './Home';
 import NavBar from '../components/NavBar';
 import JobBox from './JobBox'
 
 
-// @connect(state => ({routerState: state.router, app: state.app }))
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {children} = this.props;
-    const {app} = this.props;
+    const {children, app } = this.props;
+    console.log(children, app);
 
     return (
       <div>
@@ -26,5 +26,5 @@ class App extends React.Component {
   }
 }
 
-// export default App
-export default connect(state => ({routerState: state.router, app: state.app }))(App)
+export default App
+// export default connect(state => ({routerState: state.router, app: state.app }))(App)

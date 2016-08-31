@@ -2,9 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addJob } from '../actions'
 
-let AddJob = ({ dispatch }) => {
-  let input
+const mapStateToProps = (state, ownProps) => {}
+  return {
+    food: () => {console.log("bear")}
+  }
+}
 
+let AddJob = ({ dispatch, food }) => {
+  let input
+  food()
   return (
     <div>
       <form onSubmit={e => {

@@ -10,7 +10,7 @@ class Job extends React.Component {
 
     return (
       <tr>
-        <td>{job.title}</td>
+        <td>{job.id}</td>
         <td>{job.hourly_rate}</td>
         <td>{job.tax_rate}</td>
       </tr>
