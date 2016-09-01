@@ -2,11 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addJob } from '../actions'
 
-const mapStateToProps = (state, ownProps) => {}
-  return {
-    food: () => {console.log("bear")}
-  }
-}
 
 let AddJob = ({ dispatch, food }) => {
   let input

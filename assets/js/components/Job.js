@@ -6,11 +6,11 @@ class Job extends React.Component {
   }
 
   render() {
-    const {job} = this.props;
+    const {job, onClick} = this.props;
 
     return (
-      <tr>
-        <td>{job.id}</td>
+      <tr onClick={onClick}>
+        <td>{job.title}</td>
         <td>{job.hourly_rate}</td>
         <td>{job.tax_rate}</td>
       </tr>

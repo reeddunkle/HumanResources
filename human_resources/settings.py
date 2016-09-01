@@ -134,13 +134,13 @@ STATICFILES_DIRS = (
 
 
 # Django Pipeline
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
 )
+# 'pipeline.finders.PipelineFinder'
 
 WEBPACK_LOADER = {
     'DEFAULT': {

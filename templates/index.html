@@ -7,13 +7,14 @@
   {% block page_head %}
   <head>
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/assets/bundles/style.css">
   </head>
   {% endblock %}
 
   <body>
     {% block body %}
     <div id="root"></div>
-    <!-- {% csrf_token %} -->
+    {% csrf_token %}
     {% endblock %}
 
     {% render_bundle 'main' %}

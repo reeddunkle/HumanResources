@@ -7,19 +7,18 @@ import InvoiceList from './InvoiceList'
 import JobBox from './JobBox'
 import TimeList from './TimeList'
 import Home from './Home'
-import {fetchData} from '../actions/actions'
 
-const loadJobs = () => {
-  store.dispatch(fetchData('/api/jobs'));
-}
-const loadTime = () => {
-  store.dispatch(fetchData('/api/time'));
-}
-const loadInvoices = () => {
-  store.dispatch(fetchData('/api/invoices'));
-}
+// const loadJobs = () => {
+//   store.dispatch(fetchData('/api/jobs'));
+// }
+// const loadTime = () => {
+//   store.dispatch(fetchData('/api/time'));
+// }
+// const loadInvoices = () => {
+//   store.dispatch(fetchData('/api/invoices'));
+// }
 
-const Root = ({ store }) =>  (
+const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
         <Route path='/' component={App} >
@@ -27,7 +26,7 @@ const Root = ({ store }) =>  (
         </Route>
     </Router>
   </Provider>
-)
+);
 
 // <Route path='/jobs' component={JobList} onEnter={loadJobs} />
 // <Route path='/time' component={TimeList} onEnter={loadTime} />
