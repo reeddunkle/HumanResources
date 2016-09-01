@@ -62,14 +62,14 @@ export const loadTime = () => {
   return fetchData("/api/time")
 }
 
-export const fetchData = (url) => {
+const fetchData = (url) => {
   console.log(2, "AC Called:");
   return (dispatch) => {
     console.log(3, "Dispatching Data Request");
     dispatch(requestData("fetchData"));
     return axios({
       url: url,
-      method: 'get',
+      method: 'get'
     })
       .then((response) => {
         console.log("4a", "Data Found:", response.data);
@@ -81,6 +81,28 @@ export const fetchData = (url) => {
       })
   }
 };
+
+// export const delData = (url, id) => {
+//   console.log(2, "AC Called:");
+//   return (dispatch) => {
+//     console.log(3, "Dispatching Data DELETE Request");
+//     dispatch(requestData("delData"));
+//     return axios({
+//       url: url,
+//       method: 'delete',
+//       data: {id: id},
+//       headers: {"X-CSRFToken": csrfToken}
+//     })
+//       .then((response) => {
+//         console.log("4a", "Data DELETE Found:", response.data);
+//         dispatch(receiveData(response.data, "delData"));
+//       })
+//       .catch((response) => {
+//         console.log("4b", "Data DELETE Error:", response.data);
+//         dispatch(receiveError(response.data, "delData"));
+//       })
+//   }
+// };
 
 function getCookie(name) {
     var cookieValue = null;
@@ -99,7 +121,6 @@ function getCookie(name) {
 }
 
 
-
 export const setVisibilityFilter = (filter) => {
   return {
     type: 'SET_VISIBILITY_FILTER',
@@ -113,34 +134,3 @@ export const toggleEdit = (id) => {
     id
   }
 }
-
-// function stateSaved() {
-//   return {
-//     type: 'STATE_SAVED'
-//   }
-// }
-
-// function stateSaveError() {
-//   return {
-//     type: 'STATE_SAVE_ERROR'
-//   }
-// }
-
-// function stateSaveStart() {
-//   return {
-//     type: 'STATE_SAVE_REQUESTED'
-//   }
-// }
-
-// export const saveState = () => {
-//   return (dispatch, getState) => {
-//     dispatch(stateSaveStart());
-//     return postState(getState().jobs)
-//       .then(
-//         ok => dispatch(stateSaved())
-//       )
-//       .catch(
-//         error => dispatch(stateSaveError())
-//       )
-//   }
-// }

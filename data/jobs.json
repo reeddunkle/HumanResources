@@ -1,12 +1,12 @@
 {
-  "Developer": {
-    "hourly_rate": 25.0,
-    "tax_rate": 1.06,
-    "title": "Developer"
-  },
-  "Rebecca": {
-    "title": "Rebecca",
-    "tax_rate": 2,
-    "hourly_rate": 3
-  }
+    "Rebecca": {
+        "hourly_rate": 3,
+        "tax_rate": 2,
+        "title": "Rebecca"
+    },
+    "Developer": {
+        "title": "Developer",
+        "tax_rate": 1.06,
+        "hourly_rate": 25.0
+    }
 }

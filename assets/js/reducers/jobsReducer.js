@@ -1,4 +1,4 @@
-const item = (state, action) => {
+const job = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_EDIT':
       if (state.title !== action.title) {
@@ -15,17 +15,19 @@ const item = (state, action) => {
 const jobsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'TOGGLE_EDIT':
-      return state.map(j => item(j, action));
+      return state.map(j => job(j, action));
     case 'RECV_DATA':
       if (action.subject === 'fetchData') {
         return Object.assign({}, state, action.data)
       } else if (action.subject === 'addJob') {
-        var newItem = {};
-        newItem[action.data.title] = action.data;
-        return Object.assign({}, state, newItem)
+        var newJob = {};
+        newJob[action.data.title] = action.data;
+        return Object.assign({}, state, newJob)
       } else {
         return state;
       }
+    case 'REQ_DATA':
+      console.log("DATA REQUESTED --------------");
     case 'RECV_ERROR':
       return Object.assign({}, state, {data: action.data, error: true});
 
