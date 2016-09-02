@@ -52,10 +52,11 @@ const mapDispatchToProps = (dispatch) => {
   console.log("JobList MDTP ", onItemClick);
   return {
     onItemClick: (id) => {
+      console.log("Dispatching toggleEdit. id=", id);
       dispatch(toggleEdit(id))
     }
   }
 }
 
 
-export default connect(mapStateToProps)(JobList)
+export default connect(mapStateToProps, mapDispatchToProps)(JobList)

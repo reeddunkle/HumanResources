@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import FilterLink from './containers/FilterLink'
 
 class NavBar extends React.Component {
   constructor(props){
@@ -27,6 +28,29 @@ class NavBar extends React.Component {
     )
   }
 };
+
+import React from 'react'
+import FilterLink from './containers/FilterLink'
+import SaveButton from './containers/SaveButton'
+
+const Footer = () => (
+  <div>
+    Show:
+    {" "}
+    <FilterLink filter="SHOW_ALL">
+      All
+    </FilterLink>
+    {", "}
+    <FilterLink filter="SHOW_ACTIVE">
+      Active
+    </FilterLink>
+    {", "}
+    <FilterLink filter="SHOW_COMPLETED">
+      Completed
+    </FilterLink>
+    <SaveButton />
+  </div>
+)
 
 // export default NavBar;
 export default connect(state => ({routerState: state.router}))(NavBar);

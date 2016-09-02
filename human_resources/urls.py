@@ -21,6 +21,6 @@ from human_resources.views import JobsHandler, TimeHandler
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index.html"), name="index"),
-    url(r'^api/jobs/?$', JobsHandler.as_view()),
-    url(r'^api/time/?$', TimeHandler.as_view()),
+    url(r'^api/jobs/?$', JobsHandler.as_view(), name="jobs"),
+    url(r'^api/time/?$', TimeHandler.as_view(), name="time"),
 ]

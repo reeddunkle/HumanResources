@@ -2,20 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { saveState } from '../actions'
 
-let SaveButton = ({serverState, save}) => {
+let SaveButton = ({ save, filter }) => {
 
-  return (<div>
-    <button onClick={save}>Save</button>
-    Current Server State: {serverState}
-  </div>);
+  return (
+    <div>
+      <button onClick={save(filter)}>Save</button>
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {
-  return { serverState: state.serverState }
+  return { filter: state.visibilityFilter }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { save: () => dispatch(saveState()) }
+  return { save: (filter) => dispatch(saveState(filter)) }
 }
 
 SaveButton = connect(mapStateToProps, mapDispatchToProps)(SaveButton)

@@ -1,21 +1,21 @@
 import { connect } from 'react-redux'
 import { toggleEdit } from '../actions'
-import ItemList from '../components/ItemList'
+import DisplayItems from '../components/DisplayItems'
 
 const getVisibleTodos = (items, filter) => {
   switch (filter) {
     case 'SHOW_JOBS':
-      return items.filter(t => t.completed)
+      return items.jobs
     case 'SHOW_TIME':
-      return items.filter(t => t.completed)
-    case 'SHOW_ACTIVE':
-      return items.filter(t => !t.completed)
+      return items.time
+    case 'SHOW_INVOICES':
+      return items.invoices
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    todos: getVisibleTodos(state.items, state.visibilityFilter)
   }
 }
 
@@ -30,6 +30,6 @@ const mapDispatchToProps = (dispatch) => {
 const VisibleItemList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ItemList)
+)(DisplayItems)
 
 export default VisibleItemList

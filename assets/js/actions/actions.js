@@ -6,10 +6,6 @@ function postState(jobs) {
   return axios.post("/api/jobs", jobs);
 }
 
-function requestData(subject) {
-  return {type: 'REQ_DATA', subject: subject}
-};
-
 function receiveError(json, subject) {
   return {
     type: 'RECV_ERR',
@@ -27,10 +23,58 @@ function receiveData(json, subject) {
 };
 
 
+export const saveState = (state, filter) => {
+  switch (filter) {
+    case 'SHOW_JOBS':
+      return saveJobs(dispatch, getState)
+    case 'SHOW_TIME':
+      return saveTime(dispatch, getState)
+    default:
+      return {}
+  }
+}
+
 let csrfToken = getCookie('csrftoken');
+function saveJobs(dispatch, getState) {
+  return axios({
+    method: 'post',
+    url: '/api/jobs',
+    data: getState().displayItems.jobs,
+    headers: {"X-CSRFToken": csrfToken},
+    responseType: 'json'
+    })
+    .then((response) => {
+      console.log("SUCCESS Reponse data ", response.data)
+      dispatch(receiveData(response.data, "addJob"));
+    })
+    .catch((response) => {
+      console.log("ERROR Reponse data ", response.data)
+      dispatch(receiveError(response.data, "addJob"));
+    })
+  }
+}
+
+function saveTime(dispatch, getState) {
+  return axios({
+    method: 'post',
+    url: '/api/time',
+    data: getState().displayItems.time,
+    headers: {"X-CSRFToken": csrfToken},
+    responseType: 'json'
+    })
+    .then((response) => {
+      console.log("SUCCESS Reponse data ", response.data)
+      dispatch(receiveData(response.data, "addJob"));
+    })
+    .catch((response) => {
+      console.log("ERROR Reponse data ", response.data)
+      dispatch(receiveError(response.data, "addJob"));
+    })
+  }
+}
+
 export const addJob = (title, hourly, tax) => {
   return (dispatch) => {
-    dispatch(requestData("addJob"));
     return axios({
       method: 'post',
       url: "/api/jobs",
@@ -43,11 +87,11 @@ export const addJob = (title, hourly, tax) => {
       responseType: 'json'
     })
       .then((response) => {
-        console.log("Reponse data ", response.data)
+        console.log("SUCCESS Reponse data ", response.data)
         dispatch(receiveData(response.data, "addJob"));
       })
       .catch((response) => {
-        console.log("Reponse data ", response.data)
+        console.log("ERROR Reponse data ", response.data)
         dispatch(receiveError(response.data, "addJob"));
       })
   }
@@ -66,7 +110,6 @@ const fetchData = (url) => {
   console.log(2, "AC Called:");
   return (dispatch) => {
     console.log(3, "Dispatching Data Request");
-    dispatch(requestData("fetchData"));
     return axios({
       url: url,
       method: 'get'
@@ -86,7 +129,6 @@ const fetchData = (url) => {
 //   console.log(2, "AC Called:");
 //   return (dispatch) => {
 //     console.log(3, "Dispatching Data DELETE Request");
-//     dispatch(requestData("delData"));
 //     return axios({
 //       url: url,
 //       method: 'delete',

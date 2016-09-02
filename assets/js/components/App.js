@@ -12,8 +12,8 @@ class App extends React.Component {
   }
 
   render() {
-    const {children, app } = this.props;
-    console.log(children, app);
+    const { children, app } = this.props;
+    console.log("App component children and app", children, app);
 
     return (
       <div>

@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
-import visibilityFilter from './visibilityFilter'
-import jobsReducer from '../reducers/jobsReducer';
+import itemsReducer from '../reducers/itemsReducer';
+import visibilityFilter from '../reducers/visibilityFilter';
 import { fetchData } from '../actions/actions';
 
 const rootReducer = combineReducers({
-  jobs: jobsReducer,
+  items: itemsReducer,
+  visibilityFilter
 })
 
 export default rootReducer

@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios'
-import JobList from './JobList'
-import JobForm from './JobForm'
+import JobList from '../components/JobList'
+import JobForm from '../components/JobForm'
 import { loadJobs, addJob } from '../actions/actions';
 
 
@@ -28,7 +28,8 @@ class JobBox extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  console.log("JobBox state: ", state)
+  return { jobs: state.jobs };
 }
 
 const mapDispatchToProps = (dispatch) => {

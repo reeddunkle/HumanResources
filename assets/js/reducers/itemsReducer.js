@@ -1,4 +1,4 @@
-const job = (state, action) => {
+const item = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_EDIT':
       if (state.title !== action.title) {
@@ -12,13 +12,17 @@ const job = (state, action) => {
   }
 }
 
-const jobsReducer = (state = {}, action) => {
+const itemsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'TOGGLE_EDIT':
       return state.map(j => job(j, action));
     case 'RECV_DATA':
+      console.log("jobsReducer action: ", action)
+      console.log("jobsReducer data: ", action.data)
       if (action.subject === 'fetchData') {
-        return Object.assign({}, state, action.data)
+        var returnState = Object.assign({}, state, action.data);
+        console.log("RECV_DATA return state: ", returnState);
+        return returnState;
       } else if (action.subject === 'addJob') {
         var newJob = {};
         newJob[action.data.title] = action.data;
@@ -26,9 +30,8 @@ const jobsReducer = (state = {}, action) => {
       } else {
         return state;
       }
-    case 'REQ_DATA':
-      console.log("DATA REQUESTED --------------");
     case 'RECV_ERROR':
+      console.log("ERROR EXECUTING");
       return Object.assign({}, state, {data: action.data, error: true});
 
     default:
@@ -36,4 +39,4 @@ const jobsReducer = (state = {}, action) => {
   }
 };
 
-export default jobsReducer
+export default itemsReducer
