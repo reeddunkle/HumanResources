@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { saveState } from '../actions'
+import { saveState } from '../actions/actions'
 
 let SaveButton = ({ serverState, save }) => {
 

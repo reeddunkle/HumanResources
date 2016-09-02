@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios'
-import TimeList from '../components/TimeList'
+import TimeList from './TimeList'
 import TimeForm from '../components/TimeForm'
 import { loadTime, addTime } from '../actions/actions';
 

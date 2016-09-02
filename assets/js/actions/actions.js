@@ -48,12 +48,13 @@ function receiveData(json, subject) {
 //   }
 // };
 
+let csrfToken = getCookie('csrftoken');
 export const saveState = () => {
   return (dispatch, getState) => {
     return axios({
       method: 'post',
-      url: '/api/jobs',
-      data: getState().displayItems.jobs,
+      url: '/api/data',
+      data: getState().displayItems,
       headers: {"X-CSRFToken": csrfToken},
       responseType: 'json'
     })
@@ -68,44 +69,42 @@ export const saveState = () => {
   }
 }
 
-let csrfToken = getCookie('csrftoken');
-function saveJobs(dispatch, getState) {
-  return axios({
-    method: 'post',
-    url: '/api/jobs',
-    data: getState().displayItems.jobs,
-    headers: {"X-CSRFToken": csrfToken},
-    responseType: 'json'
-    })
-    .then((response) => {
-      console.log("SUCCESS Reponse data ", response.data)
-      dispatch(receiveData(response.data, "addJob"));
-    })
-    .catch((response) => {
-      console.log("ERROR Reponse data ", response.data)
-      dispatch(receiveError(response.data, "addJob"));
-    })
-  }
-}
+// function saveJobs(dispatch, getState) {
+//   return axios({
+//     method: 'post',
+//     url: '/api/jobs',
+//     data: getState().displayItems.jobs,
+//     headers: {"X-CSRFToken": csrfToken},
+//     responseType: 'json'
+//     })
+//     .then((response) => {
+//       console.log("SUCCESS Reponse data ", response.data)
+//       dispatch(receiveData(response.data, "addJob"));
+//     })
+//     .catch((response) => {
+//       console.log("ERROR Reponse data ", response.data)
+//       dispatch(receiveError(response.data, "addJob"));
+//     })
+// }
 
-function saveTime(dispatch, getState) {
-  return axios({
-    method: 'post',
-    url: '/api/time',
-    data: getState().displayItems.time,
-    headers: {"X-CSRFToken": csrfToken},
-    responseType: 'json'
-    })
-    .then((response) => {
-      console.log("SUCCESS Reponse data ", response.data)
-      dispatch(receiveData(response.data, "addJob"));
-    })
-    .catch((response) => {
-      console.log("ERROR Reponse data ", response.data)
-      dispatch(receiveError(response.data, "addJob"));
-    })
-  }
-}
+// function saveTime(dispatch, getState) {
+//   return axios({
+//     method: 'post',
+//     url: '/api/time',
+//     data: getState().displayItems.time,
+//     headers: {"X-CSRFToken": csrfToken},
+//     responseType: 'json'
+//     })
+//     .then((response) => {
+//       console.log("SUCCESS Reponse data ", response.data)
+//       dispatch(receiveData(response.data, "addJob"));
+//     })
+//     .catch((response) => {
+//       console.log("ERROR Reponse data ", response.data)
+//       dispatch(receiveError(response.data, "addJob"));
+//     })
+//   }
+// }
 
 export const addJob = (title, hourly, tax) => {
   return {
@@ -158,7 +157,7 @@ export const addTime = (title, minutes, summary) => {
 //   return fetchData('/api/time', 'TIME')
 // }
 
-const fetchData = () => {
+export const fetchData = () => {
   console.log(2, 'AC Called:');
   return (dispatch) => {
     console.log(3, 'Dispatching Data Request');

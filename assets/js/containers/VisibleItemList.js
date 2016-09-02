@@ -3,6 +3,7 @@ import { toggleEdit } from '../actions'
 import DisplayItems from '../components/DisplayItems'
 
 const getVisibleTodos = (items, filter) => {
+  console.log("Received getVisibleTodos dispatch ", filter);
   switch (filter) {
     case 'SHOW_JOBS':
       return items.jobs

@@ -4,13 +4,14 @@ import configureStore from './store'
 import Root from './components/Root'
 import { fetchData } from './actions/actions'
 
-let displayItems = fetchData();
 
-let store = configureStore(initialState);
+let store = configureStore();
+let displayItems = store.dispatch(fetchData());
 
 
 
 console.log("Initial store ", store);
+console.log("Initial state ", store.getState());
 
 render(
   <Root store={store} />,

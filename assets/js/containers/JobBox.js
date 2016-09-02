@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios'
-import JobList from '../components/JobList'
+import JobList from './JobList'
 import JobForm from '../components/JobForm'
 import { loadJobs, addJob } from '../actions/actions';
 

@@ -4,8 +4,8 @@ import { Router, Route, browserHistory } from 'react-router'
 
 import App from './App';
 import InvoiceList from './InvoiceList'
-import JobBox from './JobBox'
-import TimeList from './TimeList'
+import JobBox from '../containers/JobBox'
+import TimeList from '../containers/TimeList'
 import Home from './Home'
 
 // const loadJobs = () => {
