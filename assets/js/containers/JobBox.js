@@ -12,28 +12,21 @@ class JobBox extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    console.log(1, "Calling Dispatch");
-    this.props.actions.loadJobs();
-  }
+
   render() {
+    const { jobs } = this.props;
     return (
       <div className="jobBox">
         <h2>Jobs</h2>
         <JobForm addJob={this.props.actions.addJob} />
-        <JobList jobs = {this.props.jobs} />
+        <JobList jobs = {jobs} />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log("JobBox state: ", state)
-  return { jobs: state.displayItems.jobs };
-}
-
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators({loadJobs, addJob}, dispatch) }
+  return { actions: bindActionCreators({addJob}, dispatch) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobBox)
+export default connect({}, mapDispatchToProps)(JobBox)

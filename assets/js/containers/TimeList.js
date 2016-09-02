@@ -12,7 +12,14 @@ class TimeList extends React.Component{
     console.log("TimeList props: ", this.props);
     console.log("Times prop: ", this.props.items.times);
     console.log("onItemClick prop: ", this.props.onItemClick);
-    const {time, onItemClick} = this.props;
+
+    const { onItemClick } = this.props;
+    const time = this.props.time;
+
+    var timeArray = Object.keys(time).map(key => {
+      return time[key];
+    })
+
     return (
       <div className='container'>
         <table className='table table-bordered table-striped'>
@@ -25,7 +32,7 @@ class TimeList extends React.Component{
             </tr>
           </thead>
           <tbody>
-          {time.map(t => {
+          {timeArray.map(t => {
             return (
               <Time
                 key={t.id}
@@ -41,17 +48,8 @@ class TimeList extends React.Component{
   }
 };
 
-const mapStateToProps = (state) => {
-  console.log("JobList MSTP ", items.time)
-  let localTime = state.displayItems.time
-  var timeArray = Object.keys(localTime).map(key => {
-    return localTime[key];
-  })
-  return {time: timeArray || [], };
-}
-
 const mapDispatchToProps = (dispatch) => {
-  console.log("JobList MDTP ", onItemClick);
+  console.log("TimeList MDTP ", onItemClick);
   return {
     onItemClick: (id) => {
       console.log("Dispatching toggleEdit. id=", id);
@@ -61,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobList)
+export default connect({}, mapDispatchToProps)(TimeList)

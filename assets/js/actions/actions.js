@@ -9,7 +9,7 @@ function postState(jobs) {
 function receiveError(json, subject) {
   return {
     type: 'RECV_ERR',
-    data: json,
+    data: {},
     subject: subject
   }
 };
@@ -150,29 +150,29 @@ export const addTime = (title, minutes, summary) => {
 // };
 
 
-export const loadJobs = () => {
-  return fetchData('/api/jobs', 'JOBS')
-}
+// export const loadJobs = () => {
+//   return fetchData('/api/jobs', 'JOBS')
+// }
 
-export const loadTime = () => {
-  return fetchData('/api/time', 'TIME')
-}
+// export const loadTime = () => {
+//   return fetchData('/api/time', 'TIME')
+// }
 
-const fetchData = (url, subject) => {
+const fetchData = () => {
   console.log(2, 'AC Called:');
   return (dispatch) => {
     console.log(3, 'Dispatching Data Request');
     return axios({
-      url: url,
+      url: "/api/data",
       method: 'get'
     })
       .then((response) => {
         console.log('4a', 'Data Found:', response.data);
-        dispatch(receiveData(response.data, subject));
+        dispatch(receiveData(response.data));
       })
       .catch((response) => {
         console.log('4b', 'Data Error:', response.data);
-        dispatch(receiveError(response.data, subject));
+        dispatch(receiveError(response.data));
       })
   }
 };

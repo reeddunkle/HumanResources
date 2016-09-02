@@ -1,4 +1,4 @@
-const visibilityFilter = (state = 'EDIT_NONE', action) => {
+const visibilityFilter = (state = 'SHOW_JOBS', action) => {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter

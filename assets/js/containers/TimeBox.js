@@ -12,28 +12,21 @@ class TimeBox extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    console.log(1, "Calling Dispatch");
-    this.props.actions.loadTime();
-  }
   render() {
+    const { time } = this.props;
+
     return (
       <div className="timeBox">
         <h2>Time Logged</h2>
         <TimeForm addTime={this.props.actions.addTime} />
-        <TimeList time={this.props.time} />
+        <TimeList time={time} />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log("JobBox state: ", state)
-  return { jobs: state.displayItems.time };
-}
-
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators({loadJobs, addJob}, dispatch) }
+  return { actions: bindActionCreators({ addTime }, dispatch) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobBox)
+export default connect({}, mapDispatchToProps)(TimeBox)

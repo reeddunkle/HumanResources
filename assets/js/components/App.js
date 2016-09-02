@@ -18,6 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
+        { children }
       </div>
     );
   }

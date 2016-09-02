@@ -12,7 +12,13 @@ class JobList extends React.Component{
     console.log("JobList props: ", this.props);
     console.log("jobs prop: ", this.props.jobs);
     console.log("onItemClick prop: ", this.props.onItemClick);
-    const {jobs, onItemClick} = this.props;
+
+    const { jobs, onItemClick } = this.props;
+
+    var jobsArray = Object.keys(jobs).map(key => {
+      return jobs[key];
+    })
+
     return (
       <div className='container'>
         <table className='table table-bordered table-striped'>
@@ -24,7 +30,7 @@ class JobList extends React.Component{
             </tr>
           </thead>
           <tbody>
-          {jobs.map(job => {
+          {jobsArray.map(job => {
             return (
               <Job
                 key={job.title}
@@ -40,15 +46,6 @@ class JobList extends React.Component{
   }
 };
 
-const mapStateToProps = (state) => {
-  console.log("JobList MSTP ", jobs)
-  let localJobs = state.displayItems.jobs
-  var jobsArray = Object.keys(localJobs).map(key => {
-    return localJobs[key];
-  })
-  return {jobs: jobsArray || [], };
-}
-
 const mapDispatchToProps = (dispatch) => {
   console.log("JobList MDTP ", onItemClick);
   return {
@@ -59,5 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(JobList)
+export default connect({}, mapDispatchToProps)(JobList)

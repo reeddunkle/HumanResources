@@ -30,7 +30,7 @@ class TimeForm extends React.Component {
     if (!title || !minutes || !summary) {
       return;
     }
-    this.props.addJob(title, minutes, summary);
+    this.props.addTime(title, minutes, summary);
     this.setState({title: '', minutes: '', summary: ''})
   }
   render() {

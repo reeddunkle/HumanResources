@@ -45,24 +45,16 @@ const itemsReducer = (state = {}, action) => {
       let time = action.data;
       return {...state, time: time};
 
+    case 'RECV_ERROR':
+      console.log("Server Error");
+      return {};
+
     case 'RECV_DATA':
       console.log("jobsReducer action: ", action)
       console.log("jobsReducer data: ", action.data)
-      if (action.subject === 'fetchData') {
-        var returnState = Object.assign({}, state, action.data);
-        console.log("RECV_DATA return state: ", returnState);
-        return returnState;
-      } else if (action.subject === 'addJob') {
-        var newJob = {};
-        newJob[action.data.title] = action.data;
-        return Object.assign({}, state, newJob)
-      } else {
-        return state;
-      }
-
-    case 'RECV_ERROR':
-      console.log("ERROR EXECUTING");
-      return Object.assign({}, state, {data: action.data, error: true});
+      var returnState = Object.assign({}, state, action.data);
+      console.log("RECV_DATA return state: ", returnState);
+      return returnState;
 
     default:
       return state;
