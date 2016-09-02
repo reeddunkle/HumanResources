@@ -74,28 +74,46 @@ function saveTime(dispatch, getState) {
 }
 
 export const addJob = (title, hourly, tax) => {
-  return (dispatch) => {
-    return axios({
-      method: 'post',
-      url: "/api/jobs",
-      data: {
-        "title": title,
-        "hourly_rate": hourly,
-        "tax_rate": tax
-      },
-      headers: {"X-CSRFToken": csrfToken},
-      responseType: 'json'
-    })
-      .then((response) => {
-        console.log("SUCCESS Reponse data ", response.data)
-        dispatch(receiveData(response.data, "addJob"));
-      })
-      .catch((response) => {
-        console.log("ERROR Reponse data ", response.data)
-        dispatch(receiveError(response.data, "addJob"));
-      })
+  return {
+    type: 'ADD_JOB',
+    title,
+    hourly,
+    tax
   }
-};
+}
+
+export const addTime = (title, minutes, summary) => {
+  return {
+    type: 'ADD_TIME',
+    title,
+    minutes,
+    summary
+  }
+}
+
+// export const addJob = (title, hourly, tax) => {
+//   return (dispatch) => {
+//     return axios({
+//       method: 'post',
+//       url: "/api/jobs",
+//       data: {
+//         "title": title,
+//         "hourly_rate": hourly,
+//         "tax_rate": tax
+//       },
+//       headers: {"X-CSRFToken": csrfToken},
+//       responseType: 'json'
+//     })
+//       .then((response) => {
+//         console.log("SUCCESS Reponse data ", response.data)
+//         dispatch(receiveData(response.data, "addJob"));
+//       })
+//       .catch((response) => {
+//         console.log("ERROR Reponse data ", response.data)
+//         dispatch(receiveError(response.data, "addJob"));
+//       })
+//   }
+// };
 
 
 export const loadJobs = () => {

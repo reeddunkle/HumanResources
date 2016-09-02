@@ -29,7 +29,7 @@ class JobBox extends React.Component {
 
 const mapStateToProps = (state) => {
   console.log("JobBox state: ", state)
-  return { jobs: state.jobs };
+  return { jobs: state.displayItems.jobs };
 }
 
 const mapDispatchToProps = (dispatch) => {

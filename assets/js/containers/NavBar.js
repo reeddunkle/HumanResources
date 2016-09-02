@@ -2,7 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import FilterLink from './containers/FilterLink'
+import FilterLink from './FilterLink';
+import SaveButton from './SaveButton';
 
 class NavBar extends React.Component {
   constructor(props){
@@ -18,9 +19,10 @@ class NavBar extends React.Component {
           </div>
           <div id='navbar'>
             <ul className='nav navbar-nav'>
-              <li><Link to='/jobs'>Jobs</Link></li>
-              <li><Link to='/time'>Time Log</Link></li>
-              <li><Link to='/invoices'>Invoices</Link></li>
+              <li><FilterLink filter="SHOW_JOBS">Jobs</FilterLink></li>
+              <li><FilterLink filter="SHOW_TIME">Time</FilterLink></li>
+              <li><FilterLink filter="SHOW_INVOICES">Invoices</FilterLink></li>
+              <li><SaveButton>Save Session</SaveButton>
             </ul>
           </div>
         </div>
@@ -29,28 +31,5 @@ class NavBar extends React.Component {
   }
 };
 
-import React from 'react'
-import FilterLink from './containers/FilterLink'
-import SaveButton from './containers/SaveButton'
-
-const Footer = () => (
-  <div>
-    Show:
-    {" "}
-    <FilterLink filter="SHOW_ALL">
-      All
-    </FilterLink>
-    {", "}
-    <FilterLink filter="SHOW_ACTIVE">
-      Active
-    </FilterLink>
-    {", "}
-    <FilterLink filter="SHOW_COMPLETED">
-      Completed
-    </FilterLink>
-    <SaveButton />
-  </div>
-)
-
 // export default NavBar;
-export default connect(state => ({routerState: state.router}))(NavBar);
+export default (NavBar);
