@@ -6,10 +6,10 @@ class Job extends React.Component {
   }
 
   render() {
-    const {job, onClick} = this.props;
+    const {job, onItemClick} = this.props;
 
     return (
-      <tr onClick={onClick}>
+      <tr onClick={onItemClick}>
         <td>{job.title}</td>
         <td>{job.hourly_rate}</td>
         <td>{job.tax_rate}</td>

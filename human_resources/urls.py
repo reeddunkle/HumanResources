@@ -16,11 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-from human_resources.views import JobsHandler, TimeHandler
+from human_resources.views import DataHandler
 
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index.html"), name="index"),
-    url(r'^api/jobs/?$', JobsHandler.as_view(), name="jobs"),
-    url(r'^api/time/?$', TimeHandler.as_view(), name="time"),
+    url(r'^api/data/?$', DataHandler.as_view(), name="data"),
 ]

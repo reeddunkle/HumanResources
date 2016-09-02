@@ -21,21 +21,29 @@ const item = (state, action) => {
 const itemsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_JOB':
-      var newJob = item(undefined, action);
-      var oldJobsState = {...state.jobs};
+      let newJob = item(undefined, action);
+      let oldJobsState = {...state.jobs};
       oldJobsState[action.title] = newJob;
-      var newJobsState = {...oldJobsState}
+      let newJobsState = {...oldJobsState}
       return {...state, jobs: newJobsState};
 
     case 'ADD_TIME':
-      var newTime = item(undefined, action);
-      var oldTimeState = {...state.time};
+      let newTime = item(undefined, action);
+      let oldTimeState = {...state.time};
       oldTimeState[action.title] = newTime;
-      var newTimeState = {...oldTimeState}
+      let newTimeState = {...oldTimeState}
       return {...state, time: newTimeState};
 
     case 'TOGGLE_EDIT':
       return state.map(j => job(j, action));
+
+    case 'RECV_JOBS':
+      let jobs = action.data;
+      return {...state, jobs: jobs};
+
+    case 'RECV_TIME':
+      let time = action.data;
+      return {...state, time: time};
 
     case 'RECV_DATA':
       console.log("jobsReducer action: ", action)

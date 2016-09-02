@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main-a3c61040246036ee1aa1.js","path":"/home/reed/code/Django/HumanResources/assets/bundles/main-a3c61040246036ee1aa1.js"},{"name":"./style.css","path":"/home/reed/code/Django/HumanResources/assets/bundles/style.css"}]}}
+{"status":"error","error":"ModuleBuildError","message":"Module build failed: SyntaxError: Unexpected token (80:0)\n\n  78 |     })\n  79 |   }\n> 80 | }\n     | ^\n  81 | \n  82 | function saveTime(dispatch, getState) {\n  83 |   return axios({\n"}

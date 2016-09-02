@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
 import itemsReducer from '../reducers/itemsReducer';
 import visibilityFilter from '../reducers/visibilityFilter';
-import { fetchData } from '../actions/actions';
+import serverState from './server.js'
 
 const rootReducer = combineReducers({
-  items: itemsReducer,
-  visibilityFilter
+  displayItems: itemsReducer,
+  visibilityFilter,
+  serverState
 })
 
 export default rootReducer

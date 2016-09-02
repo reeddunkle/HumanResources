@@ -20,11 +20,7 @@ import Home from './Home'
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Router history={browserHistory}>
-        <Route path='/' component={App} >
-          <Route path='jobs' component={JobBox} />
-        </Route>
-    </Router>
+    <App />
   </Provider>
 );
 

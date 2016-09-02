@@ -22,7 +22,7 @@ class NavBar extends React.Component {
               <li><FilterLink filter="SHOW_JOBS">Jobs</FilterLink></li>
               <li><FilterLink filter="SHOW_TIME">Time</FilterLink></li>
               <li><FilterLink filter="SHOW_INVOICES">Invoices</FilterLink></li>
-              <li><SaveButton>Save Session</SaveButton>
+              <li><SaveButton>Save Session</SaveButton></li>
             </ul>
           </div>
         </div>

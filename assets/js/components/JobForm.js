@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class JobForm extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class JobForm extends React.Component {
           value={this.state.taxRate}
           onChange={this.handleTaxRateChange}
         />
-        <input type="submit" value="Save" />
+        <input type="submit" value="Push" />
       </form>
     );
   }

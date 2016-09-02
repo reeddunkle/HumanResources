@@ -1,12 +1,14 @@
 {
-    "Gardener": {
+  jobs: {
+    "Rebecca": {
         "hourly_rate": 3,
         "tax_rate": 2,
-        "title": "Gardener"
+        "title": "Rebecca"
     },
     "Developer": {
         "title": "Developer",
         "tax_rate": 1.06,
         "hourly_rate": 25.0
-    }
+    },
+  }
 }

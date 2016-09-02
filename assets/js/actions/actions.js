@@ -15,22 +15,56 @@ function receiveError(json, subject) {
 };
 
 function receiveData(json, subject) {
-  return {
-    type: 'RECV_DATA',
-    data: json,
-    subject: subject
-  }
-};
-
-
-export const saveState = (state, filter) => {
-  switch (filter) {
-    case 'SHOW_JOBS':
-      return saveJobs(dispatch, getState)
-    case 'SHOW_TIME':
-      return saveTime(dispatch, getState)
+  switch (subject) {
+    case 'JOBS':
+      return {
+        type: 'RECV_JOBS',
+        data: json,
+      }
+    case 'TIME':
+      return {
+        type: 'RECV_TIME',
+        data: json,
+      }
     default:
-      return {}
+      return {
+        type: 'ERROR',
+        data: json
+      }
+  }
+}
+
+// function receiveJobs(json) {
+//   return {
+//     type: 'RECV_JOBS',
+//     data: json,
+//   }
+// };
+
+// function receiveTime(json) {
+//   return {
+//     type: 'RECV_TIME',
+//     data: json,
+//   }
+// };
+
+export const saveState = () => {
+  return (dispatch, getState) => {
+    return axios({
+      method: 'post',
+      url: '/api/jobs',
+      data: getState().displayItems.jobs,
+      headers: {"X-CSRFToken": csrfToken},
+      responseType: 'json'
+    })
+      .then((response) => {
+        console.log("SUCCESS Reponse data ", response.data)
+        dispatch(stateSaved());
+      })
+      .catch((response) => {
+        console.log("ERROR Reponse data ", response.data)
+        dispatch(stateSaveError());
+      })
   }
 }
 
@@ -117,28 +151,28 @@ export const addTime = (title, minutes, summary) => {
 
 
 export const loadJobs = () => {
-  return fetchData("/api/jobs")
+  return fetchData('/api/jobs', 'JOBS')
 }
 
 export const loadTime = () => {
-  return fetchData("/api/time")
+  return fetchData('/api/time', 'TIME')
 }
 
-const fetchData = (url) => {
-  console.log(2, "AC Called:");
+const fetchData = (url, subject) => {
+  console.log(2, 'AC Called:');
   return (dispatch) => {
-    console.log(3, "Dispatching Data Request");
+    console.log(3, 'Dispatching Data Request');
     return axios({
       url: url,
       method: 'get'
     })
       .then((response) => {
-        console.log("4a", "Data Found:", response.data);
-        dispatch(receiveData(response.data, "fetchData"));
+        console.log('4a', 'Data Found:', response.data);
+        dispatch(receiveData(response.data, subject));
       })
       .catch((response) => {
-        console.log("4b", "Data Error:", response.data);
-        dispatch(receiveError(response.data, "fetchData"));
+        console.log('4b', 'Data Error:', response.data);
+        dispatch(receiveError(response.data, subject));
       })
   }
 };
@@ -192,5 +226,17 @@ export const toggleEdit = (id) => {
   return {
     type: 'TOGGLE_EDIT',
     id
+  }
+}
+
+function stateSaveError() {
+  return {
+    type: 'STATE_SAVE_ERROR'
+  }
+}
+
+function stateSaved() {
+  return {
+    type: 'STATE_SAVED'
   }
 }

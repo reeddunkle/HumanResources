@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Job from './Job';
+import Job from '../components/JobComponent';
 import { toggleEdit } from '../actions/actions'
 
 class JobList extends React.Component{
@@ -40,10 +40,11 @@ class JobList extends React.Component{
   }
 };
 
-const mapStateToProps = ({ jobs }) => {
+const mapStateToProps = (state) => {
   console.log("JobList MSTP ", jobs)
-  var jobsArray = Object.keys(jobs).map(key => {
-    return jobs[key];
+  let localJobs = state.displayItems.jobs
+  var jobsArray = Object.keys(localJobs).map(key => {
+    return localJobs[key];
   })
   return {jobs: jobsArray || [], };
 }
