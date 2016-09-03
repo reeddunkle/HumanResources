@@ -6,7 +6,8 @@ import { fetchData } from './actions/actions'
 
 
 let store = configureStore();
-let displayItems = store.dispatch(fetchData());
+store.dispatch(fetchData());
+
 
 
 

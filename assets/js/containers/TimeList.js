@@ -13,8 +13,7 @@ class TimeList extends React.Component{
     console.log("Times prop: ", this.props.items.times);
     console.log("onItemClick prop: ", this.props.onItemClick);
 
-    const { onItemClick } = this.props;
-    const time = this.props.time;
+    const { time, onItemClick } = this.props;
 
     var timeArray = Object.keys(time).map(key => {
       return time[key];
