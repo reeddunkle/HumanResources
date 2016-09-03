@@ -2,9 +2,9 @@ import axios from 'axios'
 
 
 
-function postState(jobs) {
-  return axios.post("/api/jobs", jobs);
-}
+function requestData() {
+  return {type: 'REQ_DATA'}
+};
 
 function receiveError(json, subject) {
   return {
@@ -21,24 +21,35 @@ function receiveData(json, subject) {
   }
 }
 
-let csrfToken = getCookie('csrftoken');
-export const saveState = () => {
-  return (dispatch, getState) => {
-    return axios({
-      method: 'post',
-      url: '/api/data',
-      data: getState().displayItems,
-      headers: {"X-CSRFToken": csrfToken},
-      responseType: 'json'
-    })
-      .then((response) => {
-        console.log("SUCCESS Reponse data ", response.data)
-        dispatch(stateSaved());
-      })
-      .catch((response) => {
-        console.log("ERROR Reponse data ", response.data)
-        dispatch(stateSaveError());
-      })
+export const setVisibilityFilter = (filter) => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  }
+}
+
+export const toggleEdit = (id) => {
+  return {
+    type: 'TOGGLE_EDIT',
+    id
+  }
+}
+
+function stateSaveError() {
+  return {
+    type: 'STATE_SAVE_ERROR'
+  }
+}
+
+function stateSaved() {
+  return {
+    type: 'STATE_SAVED'
+  }
+}
+
+function stateSaveStart() {
+  return {
+    type: 'STATE_SAVE_REQUESTED'
   }
 }
 
@@ -60,10 +71,37 @@ export const addTime = (title, minutes, summary) => {
   }
 }
 
+let csrfToken = getCookie('csrftoken');
+export const saveState = () => {
+  console.log(2, 'saveState AC called');
+  return (dispatch, getState) => {
+    dispatch(stateSaveStart());
+    console.log(3, "Dispatching saveState");
+    return axios({
+      method: 'post',
+      url: '/api/data',
+      data: getState().displayItems.data,
+      headers: {"X-CSRFToken": csrfToken},
+      responseType: 'json'
+    })
+      .then((response) => {
+        console.log("4a SUCCESS Reponse data ", response.data)
+        dispatch(stateSaved());
+      })
+      .catch((response) => {
+        console.log("4b ERROR Reponse data ", response.data)
+        dispatch(stateSaveError());
+      })
+  }
+}
+
+
+
 export const fetchData = () => {
   console.log(2, 'AC Called:');
   return (dispatch) => {
     console.log(3, 'Dispatching Data Request');
+    dispatch(requestData());
     return axios({
       url: "/api/data",
       method: 'get'
@@ -96,31 +134,7 @@ function getCookie(name) {
 }
 
 
-export const setVisibilityFilter = (filter) => {
-  return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter
-  }
-}
 
-export const toggleEdit = (id) => {
-  return {
-    type: 'TOGGLE_EDIT',
-    id
-  }
-}
-
-function stateSaveError() {
-  return {
-    type: 'STATE_SAVE_ERROR'
-  }
-}
-
-function stateSaved() {
-  return {
-    type: 'STATE_SAVED'
-  }
-}
 
 // export const addJob = (title, hourly, tax) => {
 //   return (dispatch) => {

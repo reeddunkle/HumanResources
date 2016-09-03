@@ -14,7 +14,7 @@ class TimeList extends React.Component{
     const { time, onItemClick } = this.props;
 
     var timeArray = Object.keys(time).map(key => {
-      return time[key];
+      return {...time[key], id: key};
     })
 
     return (

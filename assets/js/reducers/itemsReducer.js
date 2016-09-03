@@ -5,59 +5,84 @@ const item = (state, action) => {
         title: action.title,
         hourly_rate: action.hourly,
         tax_rate: action.tax
-      }
-    case 'TOGGLE_EDIT':
-      if (state.title !== action.title) {
-        return Object.assign({}, state, {toEdit: false});
-      }
-
-      return Object.assign({}, state, {toEdit: !state.toEdit});
-
+      };
+    case 'ADD_TIME':
+      var d = new Date();
+      var id = d.getTime();
+      var date = d.toDateString();
+      return {
+        id: id,
+        object: {
+          date: date,
+          title: action.title,
+          minutes: action.minutes,
+          summary: action.summary
+        }
+      };
     default:
       return state;
   }
 }
 
 const defaultState = {
-  jobs: {},
-  time: {}
+  error: false,
+  isLoading: false,
+  data: {
+    jobs: {},
+    time: {}
+  }
 };
 
 const itemsReducer = (state=defaultState, action=null) => {
   switch (action.type) {
     case 'ADD_JOB':
-      let newJob = item(undefined, action);
-      let oldJobsState = {...state.jobs};
-      oldJobsState[action.title] = newJob;
-      let newJobsState = {...oldJobsState}
-      return {...state, jobs: newJobsState};
+      // Create local copy of state data to mutate
+      var jobsState = {...state.data.jobs};
+      var newJob = item(undefined, action);
+      jobsState[newJob.title] = newJob;
+      var newDataState = {...state.data, jobs: jobsState};
+      return {
+        ...state,
+        error: false,
+        isLoading: false,
+        data: newDataState
+      };
 
     case 'ADD_TIME':
-      let newTime = item(undefined, action);
-      let oldTimeState = {...state.time};
-      oldTimeState[action.title] = newTime;
-      let newTimeState = {...oldTimeState}
-      return {...state, time: newTimeState};
+      // Create local copy of state data to mutate
+      var timeState = {...state.data.time};
+      var newTime = item(undefined, action);
+      timeState[newTime.id] = newTime.object;
+      var newDataState = {...state.data, time: timeState};
+      return {
+        ...state,
+        error: false,
+        isLoading: false,
+        data: newDataState
+      };
 
-    case 'TOGGLE_EDIT':
-      return state.map(j => job(j, action));
-
-    case 'RECV_JOBS':
-      let jobs = action.data;
-      return {...state, jobs: jobs};
-
-    case 'RECV_TIME':
-      let time = action.data;
-      return {...state, time: time};
+    case 'REQ_DATA':
+      return {
+        ...state,
+        isLoading: true
+      };
 
     case 'RECV_ERROR':
       console.log("Server Error");
-      return {};
+      return {
+        ...state,
+        isLoading: false
+      };
 
     case 'RECV_DATA':
       console.log("itemsReducer action: ", action)
       console.log("itemsReducer data: ", action.data)
-      var returnState = Object.assign({}, state, action.data);
+      let returnState = {
+        ...state,
+        error: false,
+        isLoading: false,
+        data: action.data
+      };
       console.log("RECV_DATA return state: ", returnState);
       return returnState;
 

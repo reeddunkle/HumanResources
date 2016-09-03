@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux';
 import NavBar from './NavBar';
+import Loading from './Loading';
 import VisibleItemList from '../containers/VisibleItemList';
+import SaveButton from '../containers/SaveButton';
+
 // import Router, { Link } from 'react-router';
 // import Home from './Home';
 // import JobBox from './JobBox'
@@ -21,8 +24,9 @@ class App extends React.Component {
     console.log("App props", this.props);
     return (
       <div>
-        <NavBar displayItems={displayItems} />
-        <VisibleItemList />
+        <NavBar />
+        <SaveButton />
+        {displayItems.isLoading ? <Loading /> : <VisibleItemList />}
       </div>
     );
   }

@@ -27,7 +27,7 @@ class TimeBox extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("TimeBox MDTP ", onItemClick);
+  console.log("TimeBox MDTP ");
   return {
     onItemClick: (id) => {
       dispatch(toggleEdit(id))

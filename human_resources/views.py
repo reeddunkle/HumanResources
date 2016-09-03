@@ -23,7 +23,7 @@ class DataHandler(View):
     def post(self, request):
         new_data = json.loads(request.read())
 
-        with open('./data/jobs.json', 'w') as f:
+        with open('./data/data.json', 'w') as f:
             f.write(json.dumps(new_data, indent=4, separators=(',', ': ')))
 
         return HttpResponse(json.dumps(new_data), content_type='application/json')
@@ -36,7 +36,7 @@ class DataHandler(View):
         subject, id = json.loads(request.read())
         deleted_item = data['subject'].pop(id, None)
 
-        with open('./data/jobs.json', 'w') as f:
+        with open('./data/data.json', 'w') as f:
             f.write(json.dumps(data, indent=4, separators=(',', ': ')))
 
         return HttpResponse(json.dumps(deleted_item), content_type='application/json')

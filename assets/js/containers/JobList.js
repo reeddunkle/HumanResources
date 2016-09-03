@@ -33,7 +33,7 @@ class JobList extends React.Component{
               <Job
                 key={job.title}
                 job={job}
-                onItemClick={() => onItemClick(job.title)}
+                onClick={() => onItemClick(job.title)}
               />
             )
           })}

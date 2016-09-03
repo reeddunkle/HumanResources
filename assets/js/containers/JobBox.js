@@ -30,7 +30,7 @@ class JobBox extends React.Component {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("JobBox MDTP ", onItemClick);
+  console.log("JobBox MDTP ");
   return {
     onItemClick: (id) => {
       dispatch(toggleEdit(id))
