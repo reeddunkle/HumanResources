@@ -18,7 +18,12 @@ const item = (state, action) => {
   }
 }
 
-const itemsReducer = (state = {}, action) => {
+const defaultState = {
+  jobs: {},
+  time: {}
+};
+
+const itemsReducer = (state=defaultState, action=null) => {
   switch (action.type) {
     case 'ADD_JOB':
       let newJob = item(undefined, action);

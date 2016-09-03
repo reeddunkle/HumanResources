@@ -34,20 +34,6 @@ function receiveData(json, subject) {
   }
 }
 
-// function receiveJobs(json) {
-//   return {
-//     type: 'RECV_JOBS',
-//     data: json,
-//   }
-// };
-
-// function receiveTime(json) {
-//   return {
-//     type: 'RECV_TIME',
-//     data: json,
-//   }
-// };
-
 let csrfToken = getCookie('csrftoken');
 export const saveState = () => {
   return (dispatch, getState) => {
@@ -69,43 +55,6 @@ export const saveState = () => {
   }
 }
 
-// function saveJobs(dispatch, getState) {
-//   return axios({
-//     method: 'post',
-//     url: '/api/jobs',
-//     data: getState().displayItems.jobs,
-//     headers: {"X-CSRFToken": csrfToken},
-//     responseType: 'json'
-//     })
-//     .then((response) => {
-//       console.log("SUCCESS Reponse data ", response.data)
-//       dispatch(receiveData(response.data, "addJob"));
-//     })
-//     .catch((response) => {
-//       console.log("ERROR Reponse data ", response.data)
-//       dispatch(receiveError(response.data, "addJob"));
-//     })
-// }
-
-// function saveTime(dispatch, getState) {
-//   return axios({
-//     method: 'post',
-//     url: '/api/time',
-//     data: getState().displayItems.time,
-//     headers: {"X-CSRFToken": csrfToken},
-//     responseType: 'json'
-//     })
-//     .then((response) => {
-//       console.log("SUCCESS Reponse data ", response.data)
-//       dispatch(receiveData(response.data, "addJob"));
-//     })
-//     .catch((response) => {
-//       console.log("ERROR Reponse data ", response.data)
-//       dispatch(receiveError(response.data, "addJob"));
-//     })
-//   }
-// }
-
 export const addJob = (title, hourly, tax) => {
   return {
     type: 'ADD_JOB',
@@ -123,39 +72,6 @@ export const addTime = (title, minutes, summary) => {
     summary
   }
 }
-
-// export const addJob = (title, hourly, tax) => {
-//   return (dispatch) => {
-//     return axios({
-//       method: 'post',
-//       url: "/api/jobs",
-//       data: {
-//         "title": title,
-//         "hourly_rate": hourly,
-//         "tax_rate": tax
-//       },
-//       headers: {"X-CSRFToken": csrfToken},
-//       responseType: 'json'
-//     })
-//       .then((response) => {
-//         console.log("SUCCESS Reponse data ", response.data)
-//         dispatch(receiveData(response.data, "addJob"));
-//       })
-//       .catch((response) => {
-//         console.log("ERROR Reponse data ", response.data)
-//         dispatch(receiveError(response.data, "addJob"));
-//       })
-//   }
-// };
-
-
-// export const loadJobs = () => {
-//   return fetchData('/api/jobs', 'JOBS')
-// }
-
-// export const loadTime = () => {
-//   return fetchData('/api/time', 'TIME')
-// }
 
 export const fetchData = () => {
   console.log(2, 'AC Called:');
@@ -175,27 +91,6 @@ export const fetchData = () => {
       })
   }
 };
-
-// export const delData = (url, id) => {
-//   console.log(2, "AC Called:");
-//   return (dispatch) => {
-//     console.log(3, "Dispatching Data DELETE Request");
-//     return axios({
-//       url: url,
-//       method: 'delete',
-//       data: {id: id},
-//       headers: {"X-CSRFToken": csrfToken}
-//     })
-//       .then((response) => {
-//         console.log("4a", "Data DELETE Found:", response.data);
-//         dispatch(receiveData(response.data, "delData"));
-//       })
-//       .catch((response) => {
-//         console.log("4b", "Data DELETE Error:", response.data);
-//         dispatch(receiveError(response.data, "delData"));
-//       })
-//   }
-// };
 
 function getCookie(name) {
     var cookieValue = null;
@@ -239,3 +134,59 @@ function stateSaved() {
     type: 'STATE_SAVED'
   }
 }
+
+// export const addJob = (title, hourly, tax) => {
+//   return (dispatch) => {
+//     return axios({
+//       method: 'post',
+//       url: "/api/jobs",
+//       data: {
+//         "title": title,
+//         "hourly_rate": hourly,
+//         "tax_rate": tax
+//       },
+//       headers: {"X-CSRFToken": csrfToken},
+//       responseType: 'json'
+//     })
+//       .then((response) => {
+//         console.log("SUCCESS Reponse data ", response.data)
+//         dispatch(receiveData(response.data, "addJob"));
+//       })
+//       .catch((response) => {
+//         console.log("ERROR Reponse data ", response.data)
+//         dispatch(receiveError(response.data, "addJob"));
+//       })
+//   }
+// };
+
+
+// export const loadJobs = () => {
+//   return fetchData('/api/jobs', 'JOBS')
+// }
+
+// export const loadTime = () => {
+//   return fetchData('/api/time', 'TIME')
+// }
+
+// export const delData = (url, id) => {
+//   console.log(2, "AC Called:");
+//   return (dispatch) => {
+//     console.log(3, "Dispatching Data DELETE Request");
+//     return axios({
+//       url: url,
+//       method: 'delete',
+//       data: {id: id},
+//       headers: {"X-CSRFToken": csrfToken}
+//     })
+//       .then((response) => {
+//         console.log("4a", "Data DELETE Found:", response.data);
+//         dispatch(receiveData(response.data, "delData"));
+//       })
+//       .catch((response) => {
+//         console.log("4b", "Data DELETE Error:", response.data);
+//         dispatch(receiveError(response.data, "delData"));
+//       })
+//   }
+// };
+
+

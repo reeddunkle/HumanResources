@@ -6,7 +6,11 @@ import { fetchData } from './actions/actions'
 
 
 let store = configureStore();
-store.dispatch(fetchData());
+
+const loadData() => {
+  return store.dispatch(fetchData());
+}
+
 
 
 
@@ -15,6 +19,6 @@ console.log("Initial store ", store);
 console.log("Initial state ", store.getState());
 
 render(
-  <Root store={store} />,
+  <Root store={store} loadData={loadData} />,
   document.getElementById('root')
 )
