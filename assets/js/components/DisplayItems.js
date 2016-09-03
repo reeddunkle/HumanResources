@@ -1,11 +1,18 @@
+import React from 'react';
 import JobBox from '../containers/JobBox';
 import TimeBox from '../containers/TimeBox';
 import InvoiceList from '../containers/InvoiceList';
 import ErrorComponent from './ErrorComponent';
 
 class DisplayItems extends React.Component {
-  constructor() {
-    super(this);
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log("Mounting DisplayItems");
+    const { loadData } = this.props;
+    loadData();
   }
 
   render() {

@@ -8,6 +8,20 @@ import JobBox from '../containers/JobBox'
 import TimeList from '../containers/TimeList'
 import Home from './Home'
 
+
+
+const Root = ({ store, loadData }) => (
+  <Provider store={store}>
+    <App loadData={loadData} />
+  </Provider>
+)
+
+// <Route path='/jobs' component={JobList} onEnter={loadJobs} />
+// <Route path='/time' component={TimeList} onEnter={loadTime} />
+// <Route path='/invoices' component={InvoiceList} onEnter={loadInvoices} />
+
+export default Root
+
 // class Root extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -28,15 +42,3 @@ import Home from './Home'
 //     );
 //   };
 // };
-
-const Root = ({ store, loadData }) => (
-  <Provider store={this.store}>
-    <App />
-  </Provider>
-)
-
-// <Route path='/jobs' component={JobList} onEnter={loadJobs} />
-// <Route path='/time' component={TimeList} onEnter={loadTime} />
-// <Route path='/invoices' component={InvoiceList} onEnter={loadInvoices} />
-
-export default Root

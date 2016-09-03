@@ -15,6 +15,7 @@ class NavBar extends React.Component {
   }
 
   render() {
+    console.log("NavBar rendering");
     return (
       <nav className='navbar navbar-inverse navbar-static-top'>
         <div className='container-fluid'>
