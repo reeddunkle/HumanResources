@@ -10,8 +10,6 @@ class JobList extends React.Component{
 
   render() {
     console.log("JobList props: ", this.props);
-    console.log("jobs prop: ", this.props.jobs);
-    console.log("onItemClick prop: ", this.props.onItemClick);
 
     const { jobs, onItemClick } = this.props;
 
@@ -35,7 +33,7 @@ class JobList extends React.Component{
               <Job
                 key={job.title}
                 job={job}
-                onClick={() => onItemClick(job.title)}
+                onItemClick={() => onItemClick(job.title)}
               />
             )
           })}
@@ -46,14 +44,4 @@ class JobList extends React.Component{
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  console.log("JobList MDTP ", onItemClick);
-  return {
-    onItemClick: (id) => {
-      console.log("Dispatching toggleEdit. id=", id);
-      dispatch(toggleEdit(id))
-    }
-  }
-}
-
-export default connect({}, mapDispatchToProps)(JobList)
+export default JobList

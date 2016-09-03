@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import FilterLink from '../containers/FilterLink';
 import SaveButton from '../containers/SaveButton';
@@ -13,7 +13,6 @@ class NavBar extends React.Component {
   constructor(props){
     super(props);
   }
-
   render() {
     console.log("NavBar rendering");
     return (
@@ -29,7 +28,7 @@ class NavBar extends React.Component {
           </div>
         </div>
       </nav>
-    )
+    );
   }
 };
 

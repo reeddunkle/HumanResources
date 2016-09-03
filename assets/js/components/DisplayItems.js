@@ -9,22 +9,16 @@ class DisplayItems extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log("Mounting DisplayItems");
-    const { loadData } = this.props;
-    loadData();
-  }
-
   render() {
-    console.log(3, "ItemsList component rendering");
-    console.log("ItemsList props ", this.props);
+    console.log(3, "DisplayItems component rendering");
+    console.log("DisplayItems props ", this.props);
     console.log("visibleItems are: ", this.props.visibleItems)
 
     const { items, filter } = this.props;
 
     switch (filter) {
       case 'SHOW_JOBS':
-        console.log("Rendering JobsDisplay");
+        console.log("Rendering 'SHOW_JOBS' in DisplayItems");
         return (
           <JobBox jobs={items} />
         );

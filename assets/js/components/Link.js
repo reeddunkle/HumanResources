@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react'
 
 const Link = ({ active, children, onClick }) => {
   if (active) {
-    return {children}
+    return <span>{children}</span>
   }
-
+  console.log("Inside Link component");
   return (
     <a href="#"
        onClick={e => {

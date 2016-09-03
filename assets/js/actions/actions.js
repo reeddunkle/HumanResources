@@ -15,22 +15,9 @@ function receiveError(json, subject) {
 };
 
 function receiveData(json, subject) {
-  switch (subject) {
-    case 'JOBS':
-      return {
-        type: 'RECV_JOBS',
-        data: json,
-      }
-    case 'TIME':
-      return {
-        type: 'RECV_TIME',
-        data: json,
-      }
-    default:
-      return {
-        type: 'ERROR',
-        data: json
-      }
+  return {
+    type: 'RECV_DATA',
+    data: json
   }
 }
 

@@ -11,7 +11,7 @@ const loadData = () => {
   return store.dispatch(fetchData());
 }
 
-
+loadData();
 
 
 
@@ -19,6 +19,6 @@ console.log("Initial store ", store);
 console.log("Initial state ", store.getState());
 
 render(
-  <Root store={store} loadData={loadData} />,
+  <Root store={store} />,
   document.getElementById('root')
 )

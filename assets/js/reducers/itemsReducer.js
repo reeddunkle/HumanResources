@@ -55,8 +55,8 @@ const itemsReducer = (state=defaultState, action=null) => {
       return {};
 
     case 'RECV_DATA':
-      console.log("jobsReducer action: ", action)
-      console.log("jobsReducer data: ", action.data)
+      console.log("itemsReducer action: ", action)
+      console.log("itemsReducer data: ", action.data)
       var returnState = Object.assign({}, state, action.data);
       console.log("RECV_DATA return state: ", returnState);
       return returnState;

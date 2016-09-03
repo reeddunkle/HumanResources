@@ -13,20 +13,31 @@ class TimeBox extends React.Component {
     super(props);
   }
   render() {
-    const { time } = this.props;
+    const { time, onItemClick } = this.props;
+    const { addTime } = this.props.actions;
 
     return (
       <div className="timeBox">
         <h2>Time Logged</h2>
-        <TimeForm addTime={this.props.actions.addTime} />
-        <TimeList time={time} />
+        <TimeForm addTime={addTime} />
+        <TimeList time={time} onItemClick={onItemClick} />
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators({ addTime }, dispatch) }
+  console.log("TimeBox MDTP ", onItemClick);
+  return {
+    onItemClick: (id) => {
+      dispatch(toggleEdit(id))
+    },
+    actions: bindActionCreators({ addTime }, dispatch)
+  }
 }
 
-export default connect({}, mapDispatchToProps)(TimeBox)
+const mapStateToProps = () => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimeBox)

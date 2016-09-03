@@ -10,8 +10,6 @@ class TimeList extends React.Component{
 
   render() {
     console.log("TimeList props: ", this.props);
-    console.log("Times prop: ", this.props.items.times);
-    console.log("onItemClick prop: ", this.props.onItemClick);
 
     const { time, onItemClick } = this.props;
 
@@ -47,15 +45,4 @@ class TimeList extends React.Component{
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  console.log("TimeList MDTP ", onItemClick);
-  return {
-    onItemClick: (id) => {
-      console.log("Dispatching toggleEdit. id=", id);
-      dispatch(toggleEdit(id))
-    }
-  }
-}
-
-
-export default connect({}, mapDispatchToProps)(TimeList)
+export default TimeList

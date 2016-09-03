@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleEdit } from '../actions'
+import { toggleEdit } from '../actions/actions'
 import DisplayItems from '../components/DisplayItems'
 
 const getVisibleTodos = (items, filter) => {
@@ -21,12 +21,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onItemClick: (id) => {
-      dispatch(toggleEdit(id))
-    }
-  }
+const mapDispatchToProps = () => {
+  return {}
 }
 
 const VisibleItemList = connect(

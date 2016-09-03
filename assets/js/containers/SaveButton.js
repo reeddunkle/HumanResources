@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { saveState } from '../actions/actions'
 
 let SaveButton = ({ serverState, save }) => {
-
+  console.log("SaveButton rendering");
   return (
     <div>
       <button onClick={save}>Save Session</button>
@@ -20,6 +20,4 @@ const mapDispatchToProps = (dispatch) => {
   return { save: () => dispatch(saveState()) }
 }
 
-SaveButton = connect(mapStateToProps, mapDispatchToProps)(SaveButton)
-
-export default SaveButton;
+export default connect(mapStateToProps, mapDispatchToProps)(SaveButton)

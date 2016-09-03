@@ -1,32 +1,46 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import axios from 'axios'
-import JobList from './JobList'
-import JobForm from '../components/JobForm'
-import { loadJobs, addJob } from '../actions/actions';
+import axios from 'axios';
+import JobList from './JobList';
+import JobForm from '../components/JobForm';
+import { addJob } from '../actions/actions';
 
 
 
 class JobBox extends React.Component {
   constructor(props) {
     super(props);
-  }
+    console.log("JobBox constructor");
+  };
 
   render() {
-    const { jobs } = this.props;
+    console.log("Entered JobBox component render")
+    const { jobs, onItemClick } = this.props;
+    const { addJob } = this.props.actions;
+
     return (
       <div className="jobBox">
         <h2>Jobs</h2>
-        <JobForm addJob={this.props.actions.addJob} />
-        <JobList jobs = {jobs} />
+        <JobForm addJob={addJob} />
+        <JobList jobs={jobs} onItemClick={onItemClick} />
       </div>
     );
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators({addJob}, dispatch) }
-}
+  console.log("JobBox MDTP ", onItemClick);
+  return {
+    onItemClick: (id) => {
+      dispatch(toggleEdit(id))
+    },
+    actions: bindActionCreators({addJob}, dispatch)
+  };
+};
 
-export default connect({}, mapDispatchToProps)(JobBox)
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(JobBox);

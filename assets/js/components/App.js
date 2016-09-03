@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
-// import Router, { Link } from 'react-router';
 import { connect } from 'react-redux';
-// import Home from './Home';
 import NavBar from './NavBar';
+import VisibleItemList from '../containers/VisibleItemList';
+// import Router, { Link } from 'react-router';
+// import Home from './Home';
 // import JobBox from './JobBox'
 import 'bootstrap/dist/css/bootstrap.css';
-import DisplayItems from './DisplayItems';
 
 const mapStateToProps = (state) => {
-  console.log("State in App", state)
+  console.log("App MSTP", state)
   return { displayItems: state.displayItems }
 }
 
@@ -22,7 +22,7 @@ class App extends React.Component {
     return (
       <div>
         <NavBar displayItems={displayItems} />
-        <DisplayItems loadData={loadData} />
+        <VisibleItemList />
       </div>
     );
   }
