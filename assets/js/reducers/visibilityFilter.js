@@ -5,7 +5,7 @@ const visibilityFilter = (state = 'SHOW_JOBS', action) => {
       console.log("visibilityFilter returning ", action.filter)
       return action.filter
     default:
-      console.log("visibilityFilter returning ", state)
+      console.log("visibilityFilter returning default ", state)
       return state
   }
 }

@@ -13,7 +13,7 @@ class TimeList extends React.Component{
 
     const { time, onItemClick } = this.props;
 
-    var timeArray = Object.keys(time).map(key => {
+    var timeArray = Object.keys(time).sort().map(key => {
       return {...time[key], id: key};
     })
 

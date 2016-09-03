@@ -20,13 +20,21 @@ class App extends React.Component {
     super(props);
   }
   render() {
-    const { displayItems, loadData } = this.props;
+    const { displayItems } = this.props;
     console.log("App props", this.props);
+    if (displayItems.isLoading) {
+      console.log("Loading...");
+    }
     return (
       <div>
         <NavBar />
-        <SaveButton />
-        {displayItems.isLoading ? <Loading /> : <VisibleItemList />}
+        {displayItems.isLoading ?
+          <Loading /> :
+          (<div>
+            <SaveButton />
+            <VisibleItemList />
+          </div>)
+        }
       </div>
     );
   }

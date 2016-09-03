@@ -10,7 +10,6 @@ function receiveError(json, subject) {
   return {
     type: 'RECV_ERR',
     data: {},
-    subject: subject
   }
 };
 

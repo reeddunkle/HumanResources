@@ -13,7 +13,7 @@ class JobList extends React.Component{
 
     const { jobs, onItemClick } = this.props;
 
-    var jobsArray = Object.keys(jobs).map(key => {
+    var jobsArray = Object.keys(jobs).sort().map(key => {
       return jobs[key];
     })
 

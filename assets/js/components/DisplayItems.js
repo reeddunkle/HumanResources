@@ -14,7 +14,7 @@ class DisplayItems extends React.Component {
     console.log("DisplayItems props ", this.props);
     console.log("visibleItems are: ", this.props.visibleItems)
 
-    const { items, filter } = this.props;
+    const { items, jobTitles, filter } = this.props;
 
     switch (filter) {
       case 'SHOW_JOBS':
@@ -24,7 +24,7 @@ class DisplayItems extends React.Component {
         );
       case 'SHOW_TIME':
         return (
-          <TimeBox time={items} />
+          <TimeBox time={items} jobTitles={jobTitles} />
         );
       case 'SHOW_INVOICES':
         return (

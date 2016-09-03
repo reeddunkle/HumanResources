@@ -1,4 +1,25 @@
 import React from 'react';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+
+const Dropdown = ({ dropDownOptions }) => {
+  var options = dropDownOptions.map(option => {
+    return (
+      <MenuItem eventKey={option} key={option}>
+        {option}
+      </MenuItem>
+    );
+  });
+
+  console.log("dropDownOptions", dropDownOptions);
+
+  return (
+    <div>
+      <DropdownButton title="Job Title..." id="dropdown">
+        {options}
+      </DropdownButton>
+    </div>
+  );
+};
 
 class TimeForm extends React.Component {
   constructor(props) {
@@ -34,8 +55,10 @@ class TimeForm extends React.Component {
     this.setState({title: '', minutes: '', summary: ''})
   }
   render() {
+    const { jobTitles } = this.props;
     return (
       <form className="jobForm" onSubmit={this.handleSubmit}>
+        <Dropdown dropDownOptions={jobTitles} />
         <input
           type="text"
           placeholder="Job title"

@@ -14,10 +14,15 @@ const getVisibleTodos = (items, filter) => {
   }
 }
 
+const getJobTitles = (jobs) => {
+  return jobs.keys();
+}
+
 const mapStateToProps = (state) => {
   return {
     items: getVisibleTodos(state.displayItems.data, state.visibilityFilter),
-    filter: state.visibilityFilter
+    filter: state.visibilityFilter,
+    jobTitles: Object.keys(state.displayItems.data.jobs)
   }
 }
 

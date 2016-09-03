@@ -13,13 +13,13 @@ class TimeBox extends React.Component {
     super(props);
   }
   render() {
-    const { time, onItemClick } = this.props;
+    const { time, jobTitles, onItemClick } = this.props;
     const { addTime } = this.props.actions;
 
     return (
       <div className="timeBox">
         <h2>Time Logged</h2>
-        <TimeForm addTime={addTime} />
+        <TimeForm addTime={addTime} jobTitles={jobTitles} />
         <TimeList time={time} onItemClick={onItemClick} />
       </div>
     );
