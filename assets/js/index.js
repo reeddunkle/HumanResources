@@ -7,7 +7,7 @@ import { fetchData } from './actions/actions'
 
 let store = configureStore();
 
-const loadData() => {
+const loadData = () => {
   return store.dispatch(fetchData());
 }
 

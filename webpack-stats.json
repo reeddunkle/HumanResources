@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main-8514ea0db37905d1eb05.js","path":"/home/reed/code/Django/HumanResources/assets/bundles/main-8514ea0db37905d1eb05.js"},{"name":"./style.css","path":"/home/reed/code/Django/HumanResources/assets/bundles/style.css"}]}}
+{"status":"error","error":"ModuleBuildError","message":"Module build failed: Duplicate declaration \"Root\"\n\n  30 | };\n  31 | \n> 32 | const Root = ({ store, loadData }) => (\n     |       ^\n  33 |   <Provider store={this.store}>\n  34 |     <App />\n  35 |   </Provider>\n"}

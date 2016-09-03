@@ -8,21 +8,32 @@ import JobBox from '../containers/JobBox'
 import TimeList from '../containers/TimeList'
 import Home from './Home'
 
-class Root extends React.Component => {
-  constructor() {
-    super(props);
-  }
+// class Root extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.store = this.props.store;
+//     this.loadData = this.props.loadData;
+//   }
 
-  render() {
-    const { store, loadItems } = this.props;
-    loadItems();
-    return (
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-  };
-};
+//   componentWillMount() {
+//     this.loadData();
+//     console.log("Root rendering. Current state: ", this.store.getState())
+//   }
+
+//   render() {
+//     return (
+//       <Provider store={this.store}>
+//         <App />
+//       </Provider>
+//     );
+//   };
+// };
+
+const Root = ({ store, loadData }) => (
+  <Provider store={this.store}>
+    <App />
+  </Provider>
+)
 
 // <Route path='/jobs' component={JobList} onEnter={loadJobs} />
 // <Route path='/time' component={TimeList} onEnter={loadTime} />
