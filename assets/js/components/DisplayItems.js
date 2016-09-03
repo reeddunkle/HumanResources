@@ -43,3 +43,5 @@ class DisplayItems extends React.Component {
     }
   }
 }
+
+export default DisplayItems;

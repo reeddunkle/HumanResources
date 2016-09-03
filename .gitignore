@@ -1,5 +1,6 @@
-backup
 node_modules
+backup
+assets/bundles
 npm-debug.log
 .DS_Store
 .idea
