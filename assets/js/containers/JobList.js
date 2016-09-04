@@ -13,8 +13,8 @@ const JobList = ({ jobs, onItemClick }) => {
         <thead>
           <tr>
             <th>Job Title</th>
-            <th width="85">Hourly Rate</th>
-            <th width="85">Tax Rate</th>
+            <th width="85">Hourly Rate ($)</th>
+            <th width="85">Tax Rate ($)</th>
           </tr>
         </thead>
         <tbody>

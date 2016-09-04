@@ -2,17 +2,17 @@
     "jobs": {
         "Florist": {
             "hourly_rate": 10,
-            "tax_rate": 1.06,
+            "tax_rate": 0.06,
             "title": "Florist"
         },
         "Developer": {
             "title": "Developer",
-            "tax_rate": 1.06,
+            "tax_rate": 0.06,
             "hourly_rate": 25
         },
         "Programmer": {
             "title": "Programmer",
-            "tax_rate": 1.06,
+            "tax_rate": 0.06,
             "hourly_rate": 30
         }
     },

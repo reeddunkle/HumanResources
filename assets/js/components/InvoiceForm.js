@@ -5,6 +5,7 @@ import React from 'react';
 import { msToISO } from '../actions/actions';
 import Dropdown from './Dropdown';
 import TimeList from '../containers/TimeList';
+import Invoice from './InvoiceComponent';
 
 
 const getDateArray = (title, time) => {
@@ -45,8 +46,8 @@ const setDateEndArray = (dateStart, dates) => {
 const calcTimeInRange = (start, end, title, time) => {
   console.log("Running calcTimeInRange");
   const isGTOE = (t) => (start == '' || msToISO(t.date) >= start);
-  var isLTOE = (t) => (end == '' || msToISO(t.date) <= end);
-  var hasSameTitle = (t) => (title == '' || t.title === title);
+  const isLTOE = (t) => (end == '' || msToISO(t.date) <= end);
+  const hasSameTitle = (t) => (title == '' || t.title === title);
 
   return time.filter(t => {
     if (isGTOE(t) && isLTOE(t) && hasSameTitle(t)) {
@@ -55,12 +56,8 @@ const calcTimeInRange = (start, end, title, time) => {
   }).sort();
 }
 
-const subtotal = (hourly_rate, total_minutes) => {
-  return hourly_rate * total_minutes/60;
-}
-
-const tax = (subtotal, tax_rate) => {
-  return subtotal * tax_rate;
+const calcMinutes = (time) => {
+  return time.reduce((acc, t) => acc + t.minutes, 0);
 }
 
 class InvoiceForm extends React.Component {
@@ -79,18 +76,21 @@ class InvoiceForm extends React.Component {
   }
   handleTitleChange(e) {
     if (e === 'All') {
-      this.setState({title: '', dateStart: '', dateEnd: ''})
+      this.setState({
+        title: '',
+        dateStart: '',
+        dateEnd: '',
+        hourly_rate: '',
+        tax_rate: ''
+      })
     } else {
       this.setState({
         title: e,
         dateStart: '',
         dateEnd: '',
         hourly_rate: this.props.jobs[e].hourly_rate,
-        tax_rate: this.props.jobs[e].tax_rate,
+        tax_rate: this.props.jobs[e].tax_rate
       })
-      console.log("state hourly: ", this.state.hourly_rate);
-      console.log("should be: ", this.props.jobs[e].hourly_rate)
-      console.log("state tax: ", this.state.tax_rate);
     };
   }
   handleStartDateChange(e) {
@@ -105,11 +105,17 @@ class InvoiceForm extends React.Component {
     let title = this.state.title.trim();
     let dateStart = this.state.dateStart.trim();
     let dateEnd = this.state.dateEnd.trim();
+    let hourly_rate = this.state.hourly_rate;
+    let tax_rate = this.state.tax_rate;
 
     var dateArray = getDateArray(title, time);
     var startDates = setDateStartArray(dateEnd, dateArray);
     var endDates = setDateEndArray(dateStart, dateArray);
     var timeInRange = calcTimeInRange(dateStart, dateEnd, title, time);
+    var total_minutes = calcMinutes(timeInRange);
+
+    console.log("timeInRange", timeInRange);
+    console.log("total_minutes", total_minutes);
 
     return (
       <div>
@@ -158,6 +164,11 @@ class InvoiceForm extends React.Component {
             onItemClick={onItemClick}
           />
         </div>
+          <Invoice
+            total_minutes={total_minutes}
+            hourly_rate={hourly_rate}
+            tax_rate={tax_rate}
+          />
       </div>
     );
   }
