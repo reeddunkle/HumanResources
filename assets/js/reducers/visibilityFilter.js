@@ -1,4 +1,4 @@
-const visibilityFilter = (state = 'SHOW_JOBS', action) => {
+const visibilityFilter = (state = 'SHOW_HOME', action) => {
   console.log("Received visibilityFilter ", action)
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':

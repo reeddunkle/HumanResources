@@ -1,32 +1,7 @@
-import React from 'react';
 import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
 
-const Dropdown = ({ dropDownOptions, onClick }) => {
-  var options = dropDownOptions.map(option => {
-    return (
-      <MenuItem eventKey={option} key={option}>
-        {option}
-      </MenuItem>
-    );
-  });
-
-  console.log("dropDownOptions", dropDownOptions);
-  var dropdownTitle = "Job Title...";
-  return (
-    <div>
-      <DropdownButton
-        title={dropdownTitle}
-        id="dropdown"
-        onSelect={(e) => {
-          onClick(e);
-        }}
-      >
-        {options}
-      </DropdownButton>
-    </div>
-  );
-};
+import React from 'react';
+import Dropdown from './Dropdown';
 
 class TimeForm extends React.Component {
   constructor(props) {
@@ -68,13 +43,13 @@ class TimeForm extends React.Component {
         <Dropdown
           dropDownOptions={jobTitles}
           onClick={this.handleTitleChange}
+          title="Job Titles..."
         />
         <FormControl
           readOnly
           type="text"
           placeholder="Job title"
           value={this.state.title}
-          onChange={this.handleTitleChange}
         />
         <FormControl
           type="text"
@@ -82,7 +57,8 @@ class TimeForm extends React.Component {
           value={this.state.minutes}
           onChange={this.handleMinutesChange}
         />
-        <FormControl type="text"
+        <FormControl
+          type="text"
           placeholder="Summary of work"
           value={this.state.summary}
           onChange={this.handleSummaryChange}
@@ -96,4 +72,4 @@ class TimeForm extends React.Component {
   }
 }
 
-export default TimeForm
+export default TimeForm;

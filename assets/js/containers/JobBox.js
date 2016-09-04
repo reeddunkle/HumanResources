@@ -3,52 +3,39 @@ import { Navbar, FormGroup } from 'react-bootstrap';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import axios from 'axios';
 import JobList from './JobList';
 import JobForm from '../components/JobForm';
 import { addJob } from '../actions/actions';
 
 
-
-class JobBox extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("JobBox constructor");
-  };
-
-  render() {
-    console.log("Entered JobBox component render")
-    const { jobs, onItemClick } = this.props;
-    const { addJob } = this.props.actions;
-
-    return (
-      <div className="jobBox">
-        <Navbar.Collapse>
-          <Navbar.Form className="jobForm">
-            <FormGroup>
-              <h2>Jobs</h2>
-              <JobForm addJob={addJob} />
-              <JobList jobs={jobs} onItemClick={onItemClick} />
-            </FormGroup>
-          </Navbar.Form>
-        </Navbar.Collapse>
-      </div>
-    );
-  };
+const JobBox = ({ jobs, onItemClick, actions }) => {
+  var jobsArray = Object.keys(jobs).sort().map(key => {
+    return jobs[key];
+  })
+  return (
+    <div className="jobBox">
+      <Navbar.Collapse>
+        <Navbar.Form className="jobForm">
+          <FormGroup>
+            <h2>Jobs</h2>
+            <JobForm addJob={actions.addJob} />
+            <JobList jobs={jobsArray} onItemClick={onItemClick} />
+          </FormGroup>
+        </Navbar.Form>
+      </Navbar.Collapse>
+    </div>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  console.log("JobBox MDTP ");
-  return {
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => (
+  {
     onItemClick: (id) => {
       dispatch(toggleEdit(id))
     },
     actions: bindActionCreators({addJob}, dispatch)
-  };
-};
-
-const mapStateToProps = () => {
-  return {};
-};
+  }
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobBox);

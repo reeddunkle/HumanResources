@@ -9,25 +9,36 @@
             "title": "Developer",
             "tax_rate": 1.06,
             "hourly_rate": 25
+        },
+        "Programmer": {
+            "title": "Programmer",
+            "tax_rate": 1.06,
+            "hourly_rate": 30
         }
     },
     "time": {
+        "1471392000000": {
+            "date": "1471392000000",
+            "title": "Programmer",
+            "minutes": 2400,
+            "summary": "Wrote web scraper"
+        },
         "1472739048001": {
-            "date": "Thu Sep 01 2016",
+            "date": "1472739048001",
             "title": "Florist",
-            "minutes": 8000,
+            "minutes": 1000,
             "summary": "Custom arrangements"
         },
         "1472739412517": {
-            "date": "Thu Sep 01 2016",
+            "date": "1472739412517",
             "title": "Developer",
-            "minutes": 4000,
+            "minutes": 2400,
             "summary": "Worked on web app"
         },
-        "1472739719635": {
-            "date": "Fri Sep 02 2016",
+        "1472998945256": {
+            "date": "1472998945256",
             "title": "Developer",
-            "minutes": 800,
+            "minutes": 2400,
             "summary": "Worked on web app"
         }
     }

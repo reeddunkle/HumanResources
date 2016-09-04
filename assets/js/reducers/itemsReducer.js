@@ -9,7 +9,7 @@ const item = (state, action) => {
     case 'ADD_TIME':
       var d = new Date();
       var id = d.getTime();
-      var date = d.toDateString();
+      var date = d.toISOString().split('T')[0];
       return {
         id: id,
         object: {

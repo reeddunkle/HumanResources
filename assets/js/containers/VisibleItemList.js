@@ -5,12 +5,14 @@ import DisplayItems from '../components/DisplayItems'
 const getVisibleTodos = (items, filter) => {
   console.log("Received getVisibleTodos dispatch ", filter);
   switch (filter) {
+    case 'SHOW_HOME':
+      return {};
     case 'SHOW_JOBS':
-      return items.jobs
+      return items.jobs;
     case 'SHOW_TIME':
-      return items.time
+      return items.time;
     case 'SHOW_INVOICES':
-      return items.invoices
+      return items;
   }
 }
 

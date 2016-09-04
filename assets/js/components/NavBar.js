@@ -1,33 +1,17 @@
-import React from 'react';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-// import { Link } from 'react-router';
-import { connect } from 'react-redux';
+import React from 'react';
 import FilterLink from '../containers/FilterLink';
 
-const divStyle = {
-  color: 'white',
-};
-
-class NavBar extends React.Component {
-  constructor(props){
-    super(props);
-  }
-  render() {
-    console.log("NavBar rendering");
-    return (
-      <nav className='navbar navbar-inverse navbar-static-top'>
-        <div className='container-fluid'>
-          <div id='navbar' style={divStyle}>
-            <ul className='nav navbar-nav'>
-              <li><FilterLink filter="SHOW_JOBS">Jobs</FilterLink></li>
-              <li><FilterLink filter="SHOW_TIME">Time</FilterLink></li>
-              <li><FilterLink filter="SHOW_INVOICES">Invoices</FilterLink></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    );
-  }
-};
+const NavBar = () => (
+  <Navbar inverse>
+    <Nav>
+      <FilterLink filter="SHOW_HOME">Human Resources</FilterLink>
+      <FilterLink filter="SHOW_JOBS">Jobs</FilterLink>
+      <FilterLink filter="SHOW_TIME">Time</FilterLink>
+      <FilterLink filter="SHOW_INVOICES">Invoices</FilterLink>
+    </Nav>
+  </Navbar>
+)
 
 export default NavBar;

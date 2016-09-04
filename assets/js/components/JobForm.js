@@ -1,6 +1,8 @@
-import React from 'react';
 import { Navbar, FormGroup,
          FormControl, Button, Table } from 'react-bootstrap';
+
+import React from 'react';
+
 
 class JobForm extends React.Component {
   constructor(props) {
@@ -31,9 +33,9 @@ class JobForm extends React.Component {
     let taxRate = this.state.taxRate.trim();
     if (!title || !hourlyRate || !taxRate) {
       return;
-    }
+    };
     this.props.addJob(title, hourlyRate, taxRate);
-    this.setState({title: '', hourlyRate: '', taxRate: ''})
+    this.setState({title: '', hourlyRate: '', taxRate: ''});
   }
   render() {
     return (
@@ -50,7 +52,8 @@ class JobForm extends React.Component {
               value={this.state.hourlyRate}
               onChange={this.handleHourlyRateChange}
             />
-            <FormControl type="text"
+            <FormControl
+              type="text"
               placeholder="Tax rate"
               value={this.state.taxRate}
               onChange={this.handleTaxRateChange}
@@ -64,4 +67,4 @@ class JobForm extends React.Component {
   }
 }
 
-export default JobForm
+export default JobForm;

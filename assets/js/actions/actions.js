@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-
+export const msToISO = (ms) => {
+  var d = new Date(Number(ms));
+  var date = d.toISOString().split('T')[0];
+  return date;
+}
 
 function requestData() {
   return {type: 'REQ_DATA'}
@@ -131,62 +135,3 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-
-
-
-// export const addJob = (title, hourly, tax) => {
-//   return (dispatch) => {
-//     return axios({
-//       method: 'post',
-//       url: "/api/jobs",
-//       data: {
-//         "title": title,
-//         "hourly_rate": hourly,
-//         "tax_rate": tax
-//       },
-//       headers: {"X-CSRFToken": csrfToken},
-//       responseType: 'json'
-//     })
-//       .then((response) => {
-//         console.log("SUCCESS Reponse data ", response.data)
-//         dispatch(receiveData(response.data, "addJob"));
-//       })
-//       .catch((response) => {
-//         console.log("ERROR Reponse data ", response.data)
-//         dispatch(receiveError(response.data, "addJob"));
-//       })
-//   }
-// };
-
-
-// export const loadJobs = () => {
-//   return fetchData('/api/jobs', 'JOBS')
-// }
-
-// export const loadTime = () => {
-//   return fetchData('/api/time', 'TIME')
-// }
-
-// export const delData = (url, id) => {
-//   console.log(2, "AC Called:");
-//   return (dispatch) => {
-//     console.log(3, "Dispatching Data DELETE Request");
-//     return axios({
-//       url: url,
-//       method: 'delete',
-//       data: {id: id},
-//       headers: {"X-CSRFToken": csrfToken}
-//     })
-//       .then((response) => {
-//         console.log("4a", "Data DELETE Found:", response.data);
-//         dispatch(receiveData(response.data, "delData"));
-//       })
-//       .catch((response) => {
-//         console.log("4b", "Data DELETE Error:", response.data);
-//         dispatch(receiveError(response.data, "delData"));
-//       })
-//   }
-// };
-
-

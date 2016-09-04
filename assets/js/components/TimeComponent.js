@@ -1,22 +1,15 @@
 import React from 'react'
+import { msToISO } from '../actions/actions';
 
-class Time extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
-  render() {
-    const {time, onClick} = this.props;
-
-    return (
-      <tr onClick={onClick}>
-        <td>{time.date}</td>
-        <td>{time.title}</td>
-        <td>{time.minutes}</td>
-        <td>{time.summary}</td>
-      </tr>
-    )
-  }
+const Time = ({ time, onClick }) => {
+  return (
+    <tr onClick={onClick}>
+      <td>{msToISO(time.id)}</td>
+      <td>{time.title}</td>
+      <td>{time.minutes}</td>
+      <td>{time.summary}</td>
+    </tr>
+  );
 };
 
-export default Time
+export default Time;
