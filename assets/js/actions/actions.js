@@ -74,6 +74,20 @@ export const addTime = (title, minutes, summary) => {
   }
 }
 
+export const deleteJob = (title) => {
+  return {
+    type: 'DELETE_JOB',
+    title
+  }
+}
+
+export const deleteTime = (id) => {
+  return {
+    type: 'DELETE_TIME',
+    id
+  }
+}
+
 let csrfToken = getCookie('csrftoken');
 export const saveState = () => {
   console.log(2, 'saveState AC called');

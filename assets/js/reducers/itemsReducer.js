@@ -19,6 +19,7 @@ const item = (state, action) => {
           summary: action.summary
         }
       };
+
     default:
       return state;
   }

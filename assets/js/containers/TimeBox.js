@@ -8,32 +8,54 @@ import TimeForm from '../components/TimeForm'
 import { addTime } from '../actions/actions';
 
 
-const TimeBox = ({ time, jobTitles, onItemClick, actions }) => {
-  var timeArray = Object.keys(time).sort().map(key => {
-    return {...time[key], id: key};
-  });
-  return (
-    <div className="timeBox">
-      <Navbar.Collapse>
-        <Navbar.Form className="jobForm">
-          <FormGroup>
-            <h2>Time Logged</h2>
-            <TimeForm addTime={actions.addTime} jobTitles={jobTitles} />
-            <TimeList time={timeArray} onItemClick={onItemClick} />
-          </FormGroup>
-        </Navbar.Form>
-      </Navbar.Collapse>
-    </div>
-  );
+const onItemClick = (id) => {
+  console.log("You clicked comp with id: ", id);
+}
+
+class TimeBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editId: null
+    };
+    this.handleEditId = this.handleEditId.bind(this);
+  };
+  handleEditId(e) {
+    this.setState({editId: e});
+  };
+
+  render() {
+    const { time, jobTitles, actions } = this.props;
+    var timeArray = Object.keys(time).sort().map(key => {
+      return {...time[key], id: key};
+    });
+    return (
+      <div className="timeBox">
+        <Navbar.Collapse>
+          <Navbar.Form className="jobForm">
+            <FormGroup>
+              <h2>Time Logged</h2>
+              <TimeForm
+                addTime={actions.addTime}
+                jobTitles={jobTitles}
+                editId={this.state.editId}
+              />
+              <TimeList
+                time={timeArray}
+                onItemClick={this.handleEditId}
+              />
+            </FormGroup>
+          </Navbar.Form>
+        </Navbar.Collapse>
+      </div>
+    );
+  };
 };
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onItemClick: (id) => {
-      dispatch(toggleEdit(id))
-    },
     actions: bindActionCreators({ addTime }, dispatch)
   }
 );
