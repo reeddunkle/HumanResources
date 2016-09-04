@@ -1,3 +1,5 @@
+import { Navbar, FormGroup } from 'react-bootstrap';
+
 import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,9 +20,15 @@ class TimeBox extends React.Component {
 
     return (
       <div className="timeBox">
-        <h2>Time Logged</h2>
-        <TimeForm addTime={addTime} jobTitles={jobTitles} />
-        <TimeList time={time} onItemClick={onItemClick} />
+        <Navbar.Collapse>
+          <Navbar.Form className="jobForm">
+            <FormGroup>
+              <h2>Time Logged</h2>
+              <TimeForm addTime={addTime} jobTitles={jobTitles} />
+              <TimeList time={time} onItemClick={onItemClick} />
+            </FormGroup>
+          </Navbar.Form>
+        </Navbar.Collapse>
       </div>
     );
   }

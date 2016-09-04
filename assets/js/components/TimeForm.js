@@ -1,7 +1,8 @@
 import React from 'react';
+import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
-const Dropdown = ({ dropDownOptions }) => {
+const Dropdown = ({ dropDownOptions, onClick }) => {
   var options = dropDownOptions.map(option => {
     return (
       <MenuItem eventKey={option} key={option}>
@@ -11,10 +12,16 @@ const Dropdown = ({ dropDownOptions }) => {
   });
 
   console.log("dropDownOptions", dropDownOptions);
-
+  var dropdownTitle = "Job Title...";
   return (
     <div>
-      <DropdownButton title="Job Title..." id="dropdown">
+      <DropdownButton
+        title={dropdownTitle}
+        id="dropdown"
+        onSelect={(e) => {
+          onClick(e);
+        }}
+      >
         {options}
       </DropdownButton>
     </div>
@@ -35,7 +42,7 @@ class TimeForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleTitleChange(e) {
-    this.setState({title: e.target.value})
+    this.setState({title: e})
   }
   handleMinutesChange(e) {
     this.setState({minutes: e.target.value})
@@ -57,27 +64,34 @@ class TimeForm extends React.Component {
   render() {
     const { jobTitles } = this.props;
     return (
-      <form className="jobForm" onSubmit={this.handleSubmit}>
-        <Dropdown dropDownOptions={jobTitles} />
-        <input
+      <div>
+        <Dropdown
+          dropDownOptions={jobTitles}
+          onClick={this.handleTitleChange}
+        />
+        <FormControl
+          readOnly
           type="text"
           placeholder="Job title"
           value={this.state.title}
           onChange={this.handleTitleChange}
         />
-        <input
+        <FormControl
           type="text"
           placeholder="Minutes"
           value={this.state.minutes}
           onChange={this.handleMinutesChange}
         />
-        <input type="text"
+        <FormControl type="text"
           placeholder="Summary of work"
           value={this.state.summary}
           onChange={this.handleSummaryChange}
         />
-        <input type="submit" value="Push" />
-      </form>
+        {' '}
+        <Button
+          type="submit"
+          onClick={(e) => {this.handleSubmit(e)}}>Push</Button>
+      </div>
     );
   }
 }

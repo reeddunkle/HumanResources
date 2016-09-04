@@ -1,4 +1,6 @@
 import React from 'react';
+import { Navbar, FormGroup,
+         FormControl, Button, Table } from 'react-bootstrap';
 
 class JobForm extends React.Component {
   constructor(props) {
@@ -35,26 +37,29 @@ class JobForm extends React.Component {
   }
   render() {
     return (
-      <form className="jobForm" onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="Job title"
-          value={this.state.title}
-          onChange={this.handleTitleChange}
-        />
-        <input
-          type="text"
-          placeholder="Hourly rate"
-          value={this.state.hourlyRate}
-          onChange={this.handleHourlyRateChange}
-        />
-        <input type="text"
-          placeholder="Tax rate"
-          value={this.state.taxRate}
-          onChange={this.handleTaxRateChange}
-        />
-        <input type="submit" value="Push" />
-      </form>
+          <div>
+            <FormControl
+              type="text"
+              placeholder="Job title"
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+            />
+            <FormControl
+              type="text"
+              placeholder="Hourly rate"
+              value={this.state.hourlyRate}
+              onChange={this.handleHourlyRateChange}
+            />
+            <FormControl type="text"
+              placeholder="Tax rate"
+              value={this.state.taxRate}
+              onChange={this.handleTaxRateChange}
+            />
+            {' '}
+            <Button
+              type="submit"
+              onClick={(e) => {this.handleSubmit(e)}}>Push</Button>
+          </div>
     );
   }
 }

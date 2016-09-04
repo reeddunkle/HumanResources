@@ -1,3 +1,5 @@
+import { Navbar, FormGroup } from 'react-bootstrap';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,9 +23,15 @@ class JobBox extends React.Component {
 
     return (
       <div className="jobBox">
-        <h2>Jobs</h2>
-        <JobForm addJob={addJob} />
-        <JobList jobs={jobs} onItemClick={onItemClick} />
+        <Navbar.Collapse>
+          <Navbar.Form className="jobForm">
+            <FormGroup>
+              <h2>Jobs</h2>
+              <JobForm addJob={addJob} />
+              <JobList jobs={jobs} onItemClick={onItemClick} />
+            </FormGroup>
+          </Navbar.Form>
+        </Navbar.Collapse>
       </div>
     );
   };

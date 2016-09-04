@@ -1,9 +1,9 @@
 {
     "jobs": {
-        "Gardener": {
-            "hourly_rate": 3,
-            "tax_rate": 2,
-            "title": "Gardener"
+        "Florist": {
+            "hourly_rate": 10,
+            "tax_rate": 1.06,
+            "title": "Florist"
         },
         "Developer": {
             "title": "Developer",
@@ -14,21 +14,21 @@
     "time": {
         "1472739048001": {
             "date": "Thu Sep 01 2016",
-            "title": "Farmer",
+            "title": "Florist",
             "minutes": 8000,
-            "summary": "Tilled field"
+            "summary": "Custom arrangements"
         },
         "1472739412517": {
             "date": "Thu Sep 01 2016",
             "title": "Developer",
             "minutes": 4000,
-            "summary": "Made web app"
+            "summary": "Worked on web app"
         },
         "1472739719635": {
             "date": "Fri Sep 02 2016",
             "title": "Developer",
             "minutes": 800,
-            "summary": "Made web app"
+            "summary": "Worked on web app"
         }
     }
 }

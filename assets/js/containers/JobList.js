@@ -1,3 +1,5 @@
+import { Table } from 'react-bootstrap';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import Job from '../components/JobComponent';
@@ -18,13 +20,13 @@ class JobList extends React.Component{
     })
 
     return (
-      <div className='container'>
-        <table className='table table-bordered table-striped'>
+        <div>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Job Title</th>
-              <th>Hourly Rate</th>
-              <th>Tax Rate</th>
+              <th width="65">Hourly Rate</th>
+              <th width="65">Tax Rate</th>
             </tr>
           </thead>
           <tbody>
@@ -38,8 +40,8 @@ class JobList extends React.Component{
             )
           })}
           </tbody>
-        </table>
-      </div>
+        </Table>
+        </div>
     )
   }
 };

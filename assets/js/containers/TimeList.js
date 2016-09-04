@@ -1,3 +1,5 @@
+import { Table } from 'react-bootstrap';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import Time from '../components/TimeComponent';
@@ -18,13 +20,13 @@ class TimeList extends React.Component{
     })
 
     return (
-      <div className='container'>
-        <table className='table table-bordered table-striped'>
+      <div>
+        <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Date Logged</th>
-              <th>Job Title</th>
-              <th>Minutes</th>
+              <th width="85">Date Logged</th>
+              <th width="105">Job Title</th>
+              <th width="65">Minutes</th>
               <th>Summary</th>
             </tr>
           </thead>
@@ -39,7 +41,7 @@ class TimeList extends React.Component{
             )
           })}
           </tbody>
-        </table>
+        </Table>
       </div>
     )
   }
