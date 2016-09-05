@@ -1,5 +1,5 @@
 Human Resources
-----
+====
 
 An HR web app built in React+Redux with Django on the backend.
 
@@ -35,7 +35,7 @@ If you haven't saved your changes, you can reload your stored data from the serv
 
 
 Installation
-----
+====
 
 *Note: Python 2.7.12*
 
