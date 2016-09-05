@@ -78,7 +78,7 @@ npm run build
 ```
 
 Running
-----
+====
 
 Now you can start the server:
 
