@@ -1,13 +1,10 @@
 import { Table } from 'react-bootstrap';
 
 import React from 'react';
-import { connect } from 'react-redux';
-import Job from '../components/JobComponent';
-import { toggleEdit } from '../actions/actions'
+import Job from '../containers/Job';
 
 
-const JobList = ({ jobs, onItemClick }) => {
-  console.log("Rendering JobList");
+const JobList = ({ jobs }) => {
   var jobsArray = Object.keys(jobs).sort().map(key => {
     return jobs[key];
   });
@@ -16,6 +13,7 @@ const JobList = ({ jobs, onItemClick }) => {
       <Table striped bordered hover>
         <thead>
           <tr>
+            <th></th>
             <th>Job Title</th>
             <th width="85">Hourly Rate ($)</th>
             <th width="85">Tax Rate ($)</th>
@@ -27,7 +25,6 @@ const JobList = ({ jobs, onItemClick }) => {
               <Job
                 key={job.title}
                 job={job}
-                onClick={() => onItemClick(job.title)}
               />
             )
           })}

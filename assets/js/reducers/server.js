@@ -8,7 +8,7 @@ const serverState = (state ='', action) => {
       return 'Server error';
     default:
       return state;
-  }
-}
+  };
+};
 
 export default serverState;

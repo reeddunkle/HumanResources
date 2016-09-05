@@ -1,7 +1,8 @@
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 
 import React from 'react';
 import FilterLink from '../containers/FilterLink';
+import SaveButton from '../containers/SaveButton';
 
 const NavBar = () => (
   <Navbar inverse>
@@ -11,6 +12,7 @@ const NavBar = () => (
       <FilterLink filter="SHOW_TIME">Time</FilterLink>
       <FilterLink filter="SHOW_INVOICES">Invoices</FilterLink>
     </Nav>
+      <SaveButton />
   </Navbar>
 )
 

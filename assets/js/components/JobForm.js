@@ -1,5 +1,4 @@
-import { Navbar, FormGroup,
-         FormControl, Button, Table } from 'react-bootstrap';
+import { FormControl, Button } from 'react-bootstrap';
 
 import React from 'react';
 
@@ -10,38 +9,27 @@ class JobForm extends React.Component {
     this.state = {
       title: '',
       hourlyRate: '',
-      taxRate: '',
-    }
+      taxRate: ''
+    };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleHourlyRateChange = this.handleHourlyRateChange.bind(this);
     this.handleTaxRateChange = this.handleTaxRateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  componentWillMount() {
-    if (this.props.isEdit) {
-      this.setState({
-        title: this.props.editItem.title,
-        hourlyRate: this.props.editItem.hourly_rate,
-        taxRate: this.props.editItem.tax_rate,
-      });
-    };
   };
   handleTitleChange(e) {
-    this.setState({title: e.target.value})
+    this.setState({title: e.target.value});
   };
   handleHourlyRateChange(e) {
-    this.setState({hourlyRate: e.target.value})
+    this.setState({hourlyRate: e.target.value});
   };
   handleTaxRateChange(e) {
-    this.setState({taxRate: e.target.value})
+    this.setState({taxRate: e.target.value});
   };
   handleSubmit(e) {
     e.preventDefault();
     let title = this.state.title.trim();
-    let hourlyRate = this.state.hourlyRate.trim();
-    let taxRate = this.state.taxRate.trim();
+    let hourlyRate = parseFloat(this.state.hourlyRate.trim());
+    let taxRate = parseFloat(this.state.taxRate.trim());
     if (!title || !hourlyRate || !taxRate) {
       return;
     };
@@ -51,20 +39,8 @@ class JobForm extends React.Component {
       hourlyRate: '',
       taxRate: '',
     });
-  }
-  handleDelete(e) {
-    e.preventDefault();
-    let title = this.state.title.trim();
-    let hourlyRate = this.state.hourlyRate.trim();
-    let taxRate = this.state.taxRate.trim();
-    if (!title || !hourlyRate || !taxRate) {
-      return;
-    };
-    this.props.deleteJob(title);
-    this.setState({title: '', hourlyRate: '', taxRate: ''});
-  }
+  };
   render() {
-    console.log("JobForm isEdit", this.props.isEdit);
     return (
           <div>
             <FormControl
@@ -87,18 +63,12 @@ class JobForm extends React.Component {
             />
             {' '}
             <Button
+              bsStyle="success"
               type="submit"
-              onClick={(e) => {this.handleSubmit(e)}}>Push</Button>
-            { this.props.isEdit ?
-            <Button
-              type="submit"
-              onClick={(e) => {this.handleDelete(e)}}>Delete</Button>
-              :
-            <div></div>
-            }
+              onClick={this.handleSubmit}>Add/Update</Button>
           </div>
     );
-  }
-}
+  };
+};
 
 export default JobForm;

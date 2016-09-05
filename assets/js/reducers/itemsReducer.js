@@ -8,10 +8,9 @@ const item = (state, action) => {
       };
     case 'ADD_TIME':
       var d = new Date();
-      var id = d.getTime();
-      var date = d.toISOString().split('T')[0];
+      var date = d.getTime();
       return {
-        id: id,
+        id: date,
         object: {
           date: date,
           title: action.title,
@@ -19,11 +18,10 @@ const item = (state, action) => {
           summary: action.summary
         }
       };
-
     default:
       return state;
-  }
-}
+  };
+};
 
 const defaultState = {
   error: false,
@@ -37,7 +35,6 @@ const defaultState = {
 const itemsReducer = (state=defaultState, action=null) => {
   switch (action.type) {
     case 'ADD_JOB':
-      // Create local copy of state data to mutate
       var jobsState = {...state.data.jobs};
       var newJob = item(undefined, action);
       jobsState[newJob.title] = newJob;
@@ -50,7 +47,6 @@ const itemsReducer = (state=defaultState, action=null) => {
       };
 
     case 'ADD_TIME':
-      // Create local copy of state data to mutate
       var timeState = {...state.data.time};
       var newTime = item(undefined, action);
       timeState[newTime.id] = newTime.object;
@@ -61,6 +57,28 @@ const itemsReducer = (state=defaultState, action=null) => {
         isLoading: false,
         data: newDataState
       };
+
+    case 'DELETE_JOB':
+      var oldJobs = state.data.jobs;
+      var newJobs = Object.keys(oldJobs)
+        .filter(key => key !== action.title)
+        .reduce((result, current) => {
+          result[current] = oldJobs[current];
+          return result;
+      }, {});
+      var newData = {...state.data, jobs: newJobs};
+      return {...state, data: newData};
+
+    case 'DELETE_TIME':
+      var oldTime = state.data.time;
+      var newTime = Object.keys(oldTime)
+        .filter(key => key !== action.id)
+        .reduce((result, current) => {
+          result[current] = oldTime[current];
+          return result;
+      }, {});
+      var newData = {...state.data, time: newTime};
+      return {...state, data: newData};
 
     case 'REQ_DATA':
       return {
@@ -76,20 +94,17 @@ const itemsReducer = (state=defaultState, action=null) => {
       };
 
     case 'RECV_DATA':
-      console.log("itemsReducer action: ", action)
-      console.log("itemsReducer data: ", action.data)
-      let returnState = {
+      var returnState = {
         ...state,
         error: false,
         isLoading: false,
         data: action.data
       };
-      console.log("RECV_DATA return state: ", returnState);
       return returnState;
 
     default:
       return state;
-  }
+  };
 };
 
-export default itemsReducer
+export default itemsReducer;

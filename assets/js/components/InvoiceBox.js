@@ -1,13 +1,13 @@
 import { Navbar, FormGroup } from 'react-bootstrap';
 
 import React from 'react'
-import InvoiceForm from '../components/InvoiceForm'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addTime } from '../actions/actions';
+import InvoiceForm from './InvoiceForm'
 
 
-const InvoiceBox = ({ time, jobs, jobTitles, onItemClick }) => {
+const InvoiceBox = ({ time, jobs, jobTitles }) => {
   var timeArray = Object.keys(time).sort().map(key => {
     return {...time[key], id: key};
   });
@@ -20,8 +20,7 @@ const InvoiceBox = ({ time, jobs, jobTitles, onItemClick }) => {
             <InvoiceForm
               time={timeArray}
               jobs={jobs}
-              jobTitles={jobTitles}
-              onItemClick={onItemClick} />
+              jobTitles={jobTitles} />
           </FormGroup>
         </Navbar.Form>
       </Navbar.Collapse>
@@ -29,12 +28,4 @@ const InvoiceBox = ({ time, jobs, jobTitles, onItemClick }) => {
   );
 };
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = (dispatch) => (
-  {
-    onItemClick: () => {return}
-  }
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(InvoiceBox);
+export default InvoiceBox;

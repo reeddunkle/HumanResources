@@ -1,11 +1,5 @@
 import axios from 'axios'
 
-export const msToISO = (ms) => {
-  var d = new Date(Number(ms));
-  var date = d.toISOString().split('T')[0];
-  return date;
-}
-
 function requestData() {
   return {type: 'REQ_DATA'}
 };
@@ -90,10 +84,8 @@ export const deleteTime = (id) => {
 
 let csrfToken = getCookie('csrftoken');
 export const saveState = () => {
-  console.log(2, 'saveState AC called');
   return (dispatch, getState) => {
     dispatch(stateSaveStart());
-    console.log(3, "Dispatching saveState");
     return axios({
       method: 'post',
       url: '/api/data',
@@ -102,11 +94,9 @@ export const saveState = () => {
       responseType: 'json'
     })
       .then((response) => {
-        console.log("4a SUCCESS Reponse data ", response.data)
         dispatch(stateSaved());
       })
       .catch((response) => {
-        console.log("4b ERROR Reponse data ", response.data)
         dispatch(stateSaveError());
       })
   }
@@ -115,20 +105,16 @@ export const saveState = () => {
 
 
 export const fetchData = () => {
-  console.log(2, 'AC Called:');
   return (dispatch) => {
-    console.log(3, 'Dispatching Data Request');
     dispatch(requestData());
     return axios({
       url: "/api/data",
       method: 'get'
     })
       .then((response) => {
-        console.log('4a', 'Data Found:', response.data);
         dispatch(receiveData(response.data));
       })
       .catch((response) => {
-        console.log('4b', 'Data Error:', response.data);
         dispatch(receiveError(response.data));
       })
   }

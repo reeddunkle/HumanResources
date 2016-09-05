@@ -1,34 +1,22 @@
 {
     "jobs": {
         "Florist": {
-            "hourly_rate": 10,
+            "hourly_rate": 21,
             "tax_rate": 0.06,
             "title": "Florist"
-        },
-        "Developer": {
-            "title": "Developer",
-            "tax_rate": 0.06,
-            "hourly_rate": 25
         },
         "Programmer": {
             "title": "Programmer",
             "tax_rate": 0.06,
             "hourly_rate": 30
+        },
+        "Developer": {
+            "title": "Developer",
+            "tax_rate": 0.06,
+            "hourly_rate": 25
         }
     },
     "time": {
-        "1471392000000": {
-            "date": "1471392000000",
-            "title": "Programmer",
-            "minutes": 2400,
-            "summary": "Wrote web scraper"
-        },
-        "1472739048001": {
-            "date": "1472739048001",
-            "title": "Florist",
-            "minutes": 1000,
-            "summary": "Custom arrangements"
-        },
         "1472739412517": {
             "date": "1472739412517",
             "title": "Developer",
@@ -40,6 +28,18 @@
             "title": "Developer",
             "minutes": 2400,
             "summary": "Worked on web app"
+        },
+        "1471392000000": {
+            "date": "1471392000000",
+            "title": "Programmer",
+            "minutes": 2400,
+            "summary": "Wrote web scraper"
+        },
+        "1472739048001": {
+            "date": "1472739048001",
+            "title": "Florist",
+            "minutes": 1000,
+            "summary": "Custom arrangements"
         }
     }
 }

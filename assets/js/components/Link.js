@@ -10,9 +10,7 @@ const Link = ({ children, onClick }) => (
         onClick()
       }}
       eventKey={children}
-    >
-      {children}
-    </NavItem>
+    >{children}</NavItem>
 );
 
 
