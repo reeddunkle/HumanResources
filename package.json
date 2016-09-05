@@ -4,7 +4,7 @@
   "description": "Simple job-related HR functions.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "",
     "prebuild": "rm -rf assets/bundles && mkdir assets/bundles",
     "build": "webpack",
     "postbuild": "",
