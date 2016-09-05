@@ -25,6 +25,14 @@ An HR web app built in React+Redux with Django on the backend.
 - $ tax (subtotal * tax_rate)
 - $ total
 
+### Session Changes
+
+Don't forget to save your changes to the server with the `Save Session` button!
+
+### Undo Changes
+
+If you haven't saved your changes, you can reload your stored data from the server.
+
 
 Installation
 ----
@@ -63,3 +71,23 @@ Install npm dependencies:
 npm install
 ```
 
+Once everything is done downloading, build the webpack bundle:
+
+```
+npm run build
+```
+
+Running
+----
+
+Now you can start the server:
+
+```
+python manage.py runserver
+```
+
+And point your browser to:
+
+```
+http://127.0.0.1:8000/
+```
