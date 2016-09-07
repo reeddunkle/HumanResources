@@ -25,13 +25,6 @@ export const setVisibilityFilter = (filter) => {
   }
 }
 
-export const toggleEdit = (id) => {
-  return {
-    type: 'TOGGLE_EDIT',
-    id
-  }
-}
-
 function stateSaveError() {
   return {
     type: 'STATE_SAVE_ERROR'
@@ -101,8 +94,6 @@ export const saveState = () => {
       })
   }
 }
-
-
 
 export const fetchData = () => {
   return (dispatch) => {
