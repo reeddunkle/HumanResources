@@ -7,9 +7,6 @@ import json
 import os
 import time
 
-# jobs = {"Reed":{"a":1, "b":2}, "Rebecca":{"a":22, "b":33}}
-
-
 class DataHandler(View):
 
     def get(self, request):
