@@ -8,3 +8,4 @@ npm-debug.log
 .idea
 db.*
 *.pyc
+webpack-stats.json

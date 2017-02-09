@@ -32,6 +32,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
 
 # Application definition
 

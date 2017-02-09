@@ -1,4 +1,5 @@
 import axios from 'axios'
+// axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 function requestData() {
   return {type: 'REQ_DATA'}
@@ -83,7 +84,8 @@ export const saveState = () => {
       method: 'post',
       url: '/api/data',
       data: getState().displayItems.data,
-      headers: {"X-CSRFToken": csrfToken},
+      xsrfHeaderName: "X-CSRFToken",
+      // headers: {"X-CSRFToken": csrfToken},
       responseType: 'json'
     })
       .then((response) => {

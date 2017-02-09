@@ -10,6 +10,11 @@
             "tax_rate": 0.06,
             "hourly_rate": 30
         },
+        "Getty": {
+            "hourly_rate": 23,
+            "tax_rate": 2,
+            "title": "Getty"
+        },
         "Developer": {
             "title": "Developer",
             "tax_rate": 0.06,
